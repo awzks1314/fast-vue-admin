@@ -19,9 +19,6 @@
 | store2 | 2.12.0 |
 | ... | ... |
 
-## 记录
-
-💡 CSDN：<a href='https://blog.csdn.net/weixin_42561312/article/details/113992540'>https://blog.csdn.net/weixin_42561312/article/details/113992540</a>
 
 ## 运行
 
@@ -38,11 +35,3 @@ npm run build-test
 # build for production environment
 npm run build
 ```
-
-## 开发者
-
-<div style="width:66px;height:66px;border-radius:50%;overflow:hidden">
-   <a href="https://github.com/lwm98">
-      <img src="https://avatars1.githubusercontent.com/u/48340898?s=460&u=78d39b7b7304e030eee7ab9aeec5b62fd792d253&v=4" width="66" height="66"/>
-   </a>
-</div>

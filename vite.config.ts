@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 export default defineConfig({
   plugins: [vue()],
-  base: process.env.NODE_ENV === 'production'? '/freeVue/': './',
+  base: process.env.NODE_ENV === 'production'? '/freeVue': './',
   resolve: {
     alias: {
       // 如果报错__dirname找不到，需要安装node,执行npm install @types/node --save-dev
