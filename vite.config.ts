@@ -8,11 +8,7 @@ export default defineConfig({
     alias: {
       // 如果报错__dirname找不到，需要安装node,执行npm install @types/node --save-dev
       "@": path.resolve(__dirname, "src"),    
-      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-      "utils": path.resolve(__dirname, "src/utils"),
-      "comps": path.resolve(__dirname, "src/components"),
-      "router": path.resolve(__dirname, "src/router"),
-      "views": path.resolve(__dirname, "src/views"),
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
     }
   },
   build: {

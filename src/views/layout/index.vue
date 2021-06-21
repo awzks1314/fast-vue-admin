@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineAsyncComponent, computed, getCurrentInstance, onBeforeMount, onUnmounted } from 'vue'
 import { useStore } from '@/store/index'
-import { getLocal } from '@/utils/storage'
+import { Local } from '@/utils/storage'
 export default {
   name: 'Layout',
   components: {
@@ -32,7 +32,7 @@ export default {
         })
       } else {
         proxy.mittBus.emit('layoutMobileResize', {
-          layout: getLocal('oldLayout') ? getLocal('oldLayout') : 'defaults',
+          layout: Local.get('oldLayout') ? Local.get('oldLayout') : 'defaults',
           clientWidth
         })
       }

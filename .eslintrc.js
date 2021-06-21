@@ -12,7 +12,7 @@ module.exports = {
     extends: ["plugin:vue/vue3-essential", "eslint:recommended"],
   
     // add your custom rules here
-    rules: {
+    rules: {      
       "vue/max-attributes-per-line": [
         2,
         {
@@ -137,7 +137,7 @@ module.exports = {
         }
       ],
       "no-lone-blocks": 2,
-      "no-mixed-spaces-and-tabs": 2,
+      "no-mixed-spaces-and-tabs": 'off',
       "no-multi-spaces": 2,
       "no-multi-str": 2,
       "no-multiple-empty-lines": [

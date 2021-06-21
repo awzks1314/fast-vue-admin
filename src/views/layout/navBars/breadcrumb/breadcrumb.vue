@@ -1,10 +1,10 @@
 <template>
     <div  class="layout-navbars-breadcrumb" v-show="getThemeConfig.isBreadcrumb">
-        <!-- 图标 -->
+        <!-- 图标 --> 
         <i
 			class="layout-navbars-breadcrumb-icon"
 			:class="getThemeConfig.isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"
-			@click="onThemeConfigChange"
+			@click="onThemeConfigChange" 
 		></i>
         <el-breadcrumb class="layout-navbars-breadcrumb-hide">
             <transition-group name="breadcrumb" mode='out-in'>
@@ -18,9 +18,9 @@
                         <i class="layout-navbars-breadcrumb-iconfont" :class='v.meta.icon'
                         v-if="getThemeConfig.isBreadcrumbIcon" 
                         ></i>{{v.meta.title}}
-                    </a>
+                    </a> 
                 </el-breadcrumb-item>
-            </transition-group>
+            </transition-group> 
         </el-breadcrumb>
     </div>
 </template>

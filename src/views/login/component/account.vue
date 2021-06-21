@@ -51,19 +51,22 @@
 </template>
 
 <script lang="ts">
-import { toRefs, reactive, defineComponent, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { toRefs, reactive, defineComponent, computed, getCurrentInstance } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
-// import { useI18n } from 'vue-i18n'
-import { init } from '@/router/index'
+import { useI18n } from 'vue-i18n'
+import { initFrontEndControlRoutes } from '@/router/frontEnd'
+import { initBackEndControlRoutes } from '@/router/backEnd'
 import { useStore } from '@/store/index'
-import { setSession } from '@/utils/storage'
+import { Session } from '@/utils/storage'
 import { formatAxis } from '@/utils/formatTime'
 export default defineComponent({
   name: 'Login',
   setup() {
-    // const { t } = useI18n()
+    const { t } = useI18n()
+    const { proxy } = getCurrentInstance() as any
     const store = useStore()
+    const route = useRoute()
     const router = useRouter()
     const state = reactive({
       ruleForm: {
@@ -80,7 +83,7 @@ export default defineComponent({
       return formatAxis(new Date())
     })
     // 登录
-    const onSignIn = () => {
+    const onSignIn = async() => {
       state.loading.signIn = true
       let defaultAuthPageList: Array<string> = []
       let defaultAuthBtnList: Array<string> = []
@@ -108,38 +111,43 @@ export default defineComponent({
         authBtnList: defaultAuthBtnList
       }
       // 存储 token 到浏览器缓存
-      setSession('token', Math.random().toString(36).substr(0))
+      Session.set('token', Math.random().toString(36).substr(0))
       // 存储用户信息到浏览器缓存
-      setSession('userInfo', userInfos)
+      Session.set('userInfo', userInfos)
       // 1、请注意执行顺序(存储用户信息到vuex)
       store.dispatch('userInfos/setUserInfos', userInfos)
       // 前端控制路由，2、请注意执行顺序
       if (!store.state.themeConfig.themeConfig.isRequestRoutes) {
-        init()
+        // 前端控制路由，2、请注意执行顺序
+        await initFrontEndControlRoutes()
         signInSuccess()
       }
       // 模拟后端控制路由，isRequestRoutes 为 true，则开启后端控制路由
-    //   else {
-    //     getBackEndControlRoutes((res: any) => {
-    //       setBackEndControlRoutesFun(res, () => {
-    //         signInSuccess()
-    //       })
-    //     })
-    //   }
+      else {
+        // 模拟后端控制路由，isRequestRoutes 为 true，则开启后端控制路由
+        // 添加完动态路由，再进行 router 跳转，否则可能报错 No match found for location with path "/"
+        await initBackEndControlRoutes()
+        // 执行完 initBackEndControlRoutes，再执行 signInSuccess
+        signInSuccess()
+      }
     }
     // 登录成功后的跳转
     const signInSuccess = () => {
       // 初始化登录成功时间问候语
       const currentTimeInfo = currentTime.value
       // 登录成功，跳到转首页
-      router.push('/')
-      // 登录成功提示
-      setTimeout(() => {
-        state.loading.signIn = true
-        const signInText = '欢迎回来~'
-        ElMessage.success(`${currentTimeInfo}，${signInText}`)
-        // 关闭 loading
-      }, 300)
+			// 添加完动态路由，再进行 router 跳转，否则可能报错 No match found for location with path "/"
+			// 如果是复制粘贴的路径，非首页/登录页，那么登录成功后重定向到对应的路径中
+			router.push('/')
+			// 登录成功提示
+			setTimeout(() => {
+			  // 关闭 loading
+			  state.loading.signIn = true
+			  const signInText = t('message.signInText')
+			  ElMessage.success(`${currentTimeInfo}，${signInText}`)
+			  // 修复防止退出登录再进入界面时，需要刷新样式才生效的问题，初始化布局样式等(登录的时候触发，目前方案)
+			  proxy.mittBus.emit('onSignInClick')
+			}, 300)
     }
     return {
       currentTime,

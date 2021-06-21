@@ -13,6 +13,12 @@ import mitt from 'mitt';
 // import screenShort from 'vue-web-screen-shot';
 
 const app = createApp(App);
-app.use(router).use(store, key).use(ElementPlus, { i18n: i18n.global.t }).use(i18n).mount('#app');
+app
+    .use(store, key)
+    .use(ElementPlus, { i18n: i18n.global.t })
+    .use(router)
+    .use(i18n)
+    .mount('#app');
+    
 app.config.globalProperties.mittBus = mitt();
 

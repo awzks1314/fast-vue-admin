@@ -1,6 +1,7 @@
 import { Module } from 'vuex';
-import { getSession } from '@/utils/storage';
-
+import { Session } from '@/utils/storage';
+import { UserInfosState, RootStateTypes } from '@/store/interface/index';
+ 
 const userInfosModule: Module<UserInfosState, RootStateTypes> = {
 	namespaced: true,
 	state: {
@@ -18,7 +19,7 @@ const userInfosModule: Module<UserInfosState, RootStateTypes> = {
 			if (data) {
 				commit('getUserInfos', data);
 			} else {
-				if (getSession('userInfo')) commit('getUserInfos', getSession('userInfo'));
+				if (Session.get('userInfo')) commit('getUserInfos', Session.get('userInfo'));
 			}
 		},
 	},

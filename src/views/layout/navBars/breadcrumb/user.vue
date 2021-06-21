@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-navbars-breadcrumb-user">
+    <div class="layout-navbars-breadcrumb-user" :style="{ flex: layoutUserFlexNum }">
         <el-dropdown :show-timeout="70" :hide-timeout="50" trigger="click" @command="onLanguageChange">
             <div class="layout-navbars-breadcrumb-user-icon">
 				<i class="iconfont " :class="disabledI18n === 'en' ? 'icon-fuhao-yingwen' : 'icon-fuhao-zhongwen'" :title="$t('message.user.title1')"></i>
@@ -57,21 +57,30 @@
 				</el-dropdown-menu>
 			</template>
 		</el-dropdown>
-        <!-- <Search ref="searchRef" /> -->
+        <Search ref="searchRef" />
     </div>
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed, onMounted } from 'vue'
+import { reactive, toRefs, computed, onMounted, getCurrentInstance,ref } from 'vue'
+import screenfull from 'screenfull'
+import { ElMessageBox, ElMessage } from 'element-plus'
 import { useStore } from '@/store/index'
-import { getLocal } from '@/utils/storage'
+import { useRouter } from 'vue-router'
+import { resetRoute } from '@/router/index';
+import { useI18n } from 'vue-i18n';
+import { Session, Local} from '@/utils/storage'
 import UserNews from '@/views/layout/navBars/breadcrumb/userNews.vue'
-// import Search from '@/views/layout/navBars/breadcrumb/search.vue'
+import Search from '@/views/layout/navBars/breadcrumb/search.vue'
 export default {
   name: 'LayoutBreadcrumbUser',
-  components: { UserNews },
+  components: { UserNews, Search },
   setup() {
+	const { t } = useI18n();
+	const { proxy } = getCurrentInstance() as any
+	const router = useRouter()
     const store = useStore()
+	const searchRef = ref();
     const state: any = reactive({
       disabledI18n: false,
       isScreenfull: false,
@@ -86,9 +95,81 @@ export default {
     const getThemeConfig = computed(() => {
       return store.state.themeConfig.themeConfig
     })
+    // 设置分割样式
+    const layoutUserFlexNum = computed(() => {
+      const { layout, isClassicSplitMenu } = getThemeConfig.value
+      let num: any = ''
+	  if (layout === 'defaults' || (layout === 'classic' && !isClassicSplitMenu) || layout === 'columns') { num = 1 } else { num = null }
+	  return num
+    })
+    // 全屏点击时
+    const onScreenfullClick = () => {
+      if (!screenfull.isEnabled) {
+		  ElMessage.warning('暂不支持全屏')
+		  return false
+      }
+	  screenfull.toggle()
+	  state.isScreenfull = !state.isScreenfull
+    }
+    // 布局配置 icon点击时
+    const onLayoutSetingClick = () => {
+      proxy.mittBus.emit('openSetingsDrawer')
+    }
+	// 下拉菜单点击时
+	const onHandleCommandClick = (path: string) => {
+		if (path === 'logOut') {
+			// 退出登录
+				ElMessageBox({ 
+					closeOnClickModal: false,
+					closeOnPressEscape: false,
+					title: t('message.user.logOutTitle'),
+					message: t('message.user.logOutMessage'),
+					showCancelButton: true,
+					confirmButtonText: t('message.user.logOutConfirm'),
+					cancelButtonText: t('message.user.logOutCancel'),
+					beforeClose: (action, instance, done) => {
+						if (action === 'confirm') {
+							instance.confirmButtonLoading = true;
+							instance.confirmButtonText = t('message.user.logOutExit');
+							setTimeout(() => {
+								done();
+								setTimeout(() => {
+									instance.confirmButtonLoading = false;
+								}, 300);
+							}, 700);
+						} else {
+							done();
+						}
+					},
+				})
+					.then(() => {
+						Session.clear(); // 清除缓存/token等
+						resetRoute(); // 删除/重置路由
+						router.push('/login');
+						setTimeout(() => {
+							ElMessage.success(t('message.user.logOutSuccess'));
+						}, 300);
+					})
+					.catch(() => {});
+			} else {
+				router.push(path);
+			}
+	}
+	// 菜单搜索点击
+	const onSearchClick = () => {
+		searchRef.value.openSearch();
+	}
+	// 语言切换
+	const onLanguageChange = (lang: string) => {
+		Local.remove('themeConfig')
+		getThemeConfig.value.globalI18n = lang
+		Local.set('themeConfig', getThemeConfig.value)
+		proxy.$i18n.locale = lang
+		initI18n()
+	}
     // 初始化言语国际化
     const initI18n = () => {
-      switch (getLocal('themeConfig').globalI18n) {
+      switch (Local.get('themeConfig').globalI18n) {
         case 'zh-cn':
           state.disabledI18n = 'zh-cn'
           break
@@ -102,11 +183,18 @@ export default {
     }
     // 页面加载时
     onMounted(() => {
-      if (getLocal('themeConfig')) initI18n()
+      if (Local.get('themeConfig')) initI18n()
     })
     return {
+      layoutUserFlexNum,
       getUserInfos,
       getThemeConfig,
+	  onSearchClick,
+	  onScreenfullClick,
+	  onLayoutSetingClick,
+	  onLanguageChange,
+	  searchRef,
+	  onHandleCommandClick,		
       ...toRefs(state)
     }
   }
