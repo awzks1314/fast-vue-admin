@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-
+import { KeepAliveNamesState, RootStateTypes } from '@/store/interface/index';
 const keepAliveNamesModule: Module<KeepAliveNamesState, RootStateTypes> = {
 	namespaced: true,
 	state: {

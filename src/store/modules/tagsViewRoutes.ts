@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-
+import { TagsViewRoutesState, RootStateTypes } from '@/store/interface/index';
 const tagsViewRoutesModule: Module<TagsViewRoutesState, RootStateTypes> = {
 	namespaced: true,
 	state: {

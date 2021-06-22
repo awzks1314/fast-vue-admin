@@ -1,27 +1,24 @@
 <template>
-    <div class="layout-navbars-breadcrumb-user" :style="{ flex: layoutUserFlexNum }">
-        <el-dropdown :show-timeout="70" :hide-timeout="50" trigger="click" @command="onLanguageChange">
-            <div class="layout-navbars-breadcrumb-user-icon">
-				<i class="iconfont " :class="disabledI18n === 'en' ? 'icon-fuhao-yingwen' : 'icon-fuhao-zhongwen'" :title="$t('message.user.title1')"></i>
+	<div class="layout-navbars-breadcrumb-user" :style="{ flex: layoutUserFlexNum }">
+		<el-dropdown :show-timeout="70" :hide-timeout="50" trigger="click" @command="onLanguageChange">
+			<div class="layout-navbars-breadcrumb-user-icon">
+				<i class="iconfont" :class="disabledI18n === 'en' ? 'icon-fuhao-yingwen' : 'icon-fuhao-zhongwen'" :title="$t('message.user.title1')"></i>
 			</div>
-            <template #dropdown>
-                <el-dropdown-menu>
-                    <el-dropdown-item command="zh-cn" :disabled="disabledI18n === 'zh-cn'">简体中文</el-dropdown-item>
+			<template #dropdown>
+				<el-dropdown-menu>
+					<el-dropdown-item command="zh-cn" :disabled="disabledI18n === 'zh-cn'">简体中文</el-dropdown-item>
 					<el-dropdown-item command="en" :disabled="disabledI18n === 'en'">English</el-dropdown-item>
 					<el-dropdown-item command="zh-tw" :disabled="disabledI18n === 'zh-tw'">繁體中文</el-dropdown-item>
-                </el-dropdown-menu>
-            </template>
-        </el-dropdown>
-        <!-- 菜单搜索 -->
-        <div class="layout-navbars-breadcrumb-user-icon" @click="onSearchClick">
+				</el-dropdown-menu>
+			</template>
+		</el-dropdown>
+		<div class="layout-navbars-breadcrumb-user-icon" @click="onSearchClick">
 			<i class="el-icon-search" :title="$t('message.user.title2')"></i>
 		</div>
-        <!-- 布局配置 -->
-        <div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
+		<div class="layout-navbars-breadcrumb-user-icon" @click="onLayoutSetingClick">
 			<i class="icon-skin iconfont" :title="$t('message.user.title3')"></i>
 		</div>
-        <!-- 消息通知 -->
-        <div class="layout-navbars-breadcrumb-user-icon">
+		<div class="layout-navbars-breadcrumb-user-icon">
 			<el-popover placement="bottom" trigger="click" v-model:visible="isShowUserNewsPopover" :width="300" popper-class="el-popover-pupop-user-news">
 				<template #reference>
 					<el-badge :is-dot="true" @click="isShowUserNewsPopover = !isShowUserNewsPopover">
@@ -29,20 +26,18 @@
 					</el-badge>
 				</template>
 				<transition name="el-zoom-in-top">
-                    <!-- 消息通知 -->
 					<UserNews v-show="isShowUserNewsPopover" />
 				</transition>
 			</el-popover>
 		</div>
-        <!-- 全屏开关 -->
-        <div class="layout-navbars-breadcrumb-user-icon mr10" @click="onScreenfullClick">
+		<div class="layout-navbars-breadcrumb-user-icon mr10" @click="onScreenfullClick">
 			<i
 				class="iconfont"
 				:title="isScreenfull ? $t('message.user.title5') : $t('message.user.title6')"
 				:class="!isScreenfull ? 'icon-fullscreen' : 'icon-tuichuquanping'"
 			></i>
 		</div>
-        <el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
+		<el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
 			<span class="layout-navbars-breadcrumb-user-link">
 				<img :src="getUserInfos.photo" class="layout-navbars-breadcrumb-user-link-photo mr5" />
 				{{ getUserInfos.userName === '' ? 'test' : getUserInfos.userName }}
@@ -57,69 +52,68 @@
 				</el-dropdown-menu>
 			</template>
 		</el-dropdown>
-        <Search ref="searchRef" />
-    </div>
+		<Search ref="searchRef" />
+	</div>
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed, onMounted, getCurrentInstance,ref } from 'vue'
-import screenfull from 'screenfull'
-import { ElMessageBox, ElMessage } from 'element-plus'
-import { useStore } from '@/store/index'
-import { useRouter } from 'vue-router'
-import { resetRoute } from '@/router/index';
+import { ref, getCurrentInstance, computed, reactive, toRefs, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { ElMessageBox, ElMessage } from 'element-plus';
+import screenfull from 'screenfull';
 import { useI18n } from 'vue-i18n';
-import { Session, Local} from '@/utils/storage'
-import UserNews from '@/views/layout/navBars/breadcrumb/userNews.vue'
-import Search from '@/views/layout/navBars/breadcrumb/search.vue'
+import { resetRoute } from '@/router/index';
+import { useStore } from '@/store/index';
+import { Local, Session } from '@/utils/storage';
+import UserNews from '@/views/layout/navBars/breadcrumb/userNews.vue';
+import Search from '@/views/layout/navBars/breadcrumb/search.vue';
 export default {
-  name: 'LayoutBreadcrumbUser',
-  components: { UserNews, Search },
-  setup() {
-	const { t } = useI18n();
-	const { proxy } = getCurrentInstance() as any
-	const router = useRouter()
-    const store = useStore()
-	const searchRef = ref();
-    const state: any = reactive({
-      disabledI18n: false,
-      isScreenfull: false,
-      isShowUserNewsPopover: false
-    })
-
-    // 获取用户信息
-    const getUserInfos = computed(() => {
-      return store.state.userInfos.userInfos
-    })
-    // 获取系统配置信息
-    const getThemeConfig = computed(() => {
-      return store.state.themeConfig.themeConfig
-    })
-    // 设置分割样式
-    const layoutUserFlexNum = computed(() => {
-      const { layout, isClassicSplitMenu } = getThemeConfig.value
-      let num: any = ''
-	  if (layout === 'defaults' || (layout === 'classic' && !isClassicSplitMenu) || layout === 'columns') { num = 1 } else { num = null }
-	  return num
-    })
-    // 全屏点击时
-    const onScreenfullClick = () => {
-      if (!screenfull.isEnabled) {
-		  ElMessage.warning('暂不支持全屏')
-		  return false
-      }
-	  screenfull.toggle()
-	  state.isScreenfull = !state.isScreenfull
-    }
-    // 布局配置 icon点击时
-    const onLayoutSetingClick = () => {
-      proxy.mittBus.emit('openSetingsDrawer')
-    }
-	// 下拉菜单点击时
-	const onHandleCommandClick = (path: string) => {
-		if (path === 'logOut') {
-			// 退出登录
-				ElMessageBox({ 
+	name: 'layoutBreadcrumbUser',
+	components: { UserNews, Search },
+	setup() {
+		const { t } = useI18n();
+		const { proxy } = getCurrentInstance() as any;
+		const router = useRouter();
+		const store = useStore();
+		const searchRef = ref();
+		const state: any = reactive({
+			isScreenfull: false,
+			isShowUserNewsPopover: false,
+			disabledI18n: false,
+		});
+		// 获取用户信息 vuex
+		const getUserInfos = computed(() => {
+			return store.state.userInfos.userInfos;
+		});
+		// 获取布局配置信息
+		const getThemeConfig = computed(() => {
+			return store.state.themeConfig.themeConfig;
+		});
+		// 设置分割样式
+		const layoutUserFlexNum = computed(() => {
+			let { layout, isClassicSplitMenu } = getThemeConfig.value;
+			let num: any = '';
+			if (layout === 'defaults' || (layout === 'classic' && !isClassicSplitMenu) || layout === 'columns') num = 1;
+			else num = null;
+			return num;
+		});
+		// 全屏点击时
+		const onScreenfullClick = () => {
+			if (!screenfull.isEnabled) {
+				ElMessage.warning('暂不不支持全屏');
+				return false;
+			}
+			screenfull.toggle();
+			state.isScreenfull = !state.isScreenfull;
+		};
+		// 布局配置 icon 点击时
+		const onLayoutSetingClick = () => {
+			proxy.mittBus.emit('openSetingsDrawer');
+		};
+		// 下拉菜单点击时
+		const onHandleCommandClick = (path: string) => {
+			if (path === 'logOut') {
+				ElMessageBox({
 					closeOnClickModal: false,
 					closeOnPressEscape: false,
 					title: t('message.user.logOutTitle'),
@@ -154,51 +148,50 @@ export default {
 			} else {
 				router.push(path);
 			}
-	}
-	// 菜单搜索点击
-	const onSearchClick = () => {
-		searchRef.value.openSearch();
-	}
-	// 语言切换
-	const onLanguageChange = (lang: string) => {
-		Local.remove('themeConfig')
-		getThemeConfig.value.globalI18n = lang
-		Local.set('themeConfig', getThemeConfig.value)
-		proxy.$i18n.locale = lang
-		initI18n()
-	}
-    // 初始化言语国际化
-    const initI18n = () => {
-      switch (Local.get('themeConfig').globalI18n) {
-        case 'zh-cn':
-          state.disabledI18n = 'zh-cn'
-          break
-        case 'en':
-          state.disabledI18n = 'en'
-          break
-        case 'zh-tw':
-          state.disabledI18n = 'zh-tw'
-          break
-      }
-    }
-    // 页面加载时
-    onMounted(() => {
-      if (Local.get('themeConfig')) initI18n()
-    })
-    return {
-      layoutUserFlexNum,
-      getUserInfos,
-      getThemeConfig,
-	  onSearchClick,
-	  onScreenfullClick,
-	  onLayoutSetingClick,
-	  onLanguageChange,
-	  searchRef,
-	  onHandleCommandClick,		
-      ...toRefs(state)
-    }
-  }
-}
+		};
+		// 菜单搜索点击
+		const onSearchClick = () => {
+			searchRef.value.openSearch();
+		};
+		// 语言切换
+		const onLanguageChange = (lang: string) => {
+			Local.remove('themeConfig');
+			getThemeConfig.value.globalI18n = lang;
+			Local.set('themeConfig', getThemeConfig.value);
+			proxy.$i18n.locale = lang;
+			initI18n();
+		};
+		// 初始化言语国际化
+		const initI18n = () => {
+			switch ((Local.get('themeConfig')).globalI18n) {
+				case 'zh-cn':
+					state.disabledI18n = 'zh-cn';
+					break;
+				case 'en':
+					state.disabledI18n = 'en';
+					break;
+				case 'zh-tw':
+					state.disabledI18n = 'zh-tw';
+					break;
+			}
+		};
+		// 页面加载时
+		onMounted(() => {
+			if (Local.get('themeConfig')) initI18n();
+		});
+		return {
+			getUserInfos,
+			onLayoutSetingClick,
+			onHandleCommandClick,
+			onScreenfullClick,
+			onSearchClick,
+			onLanguageChange,
+			searchRef,
+			layoutUserFlexNum,
+			...toRefs(state),
+		};
+	},
+};
 </script>
 
 <style scoped lang="scss">

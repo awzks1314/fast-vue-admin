@@ -5,7 +5,7 @@
 			<Header v-if="isFixedHeader" />
 			<el-scrollbar ref="layoutDefaultsScrollbarRef">
 				<Header v-if="!isFixedHeader" />
-				<Main />
+				<Main /> 
 			</el-scrollbar>
 		</el-container>
 		<el-backtop target=".layout-backtop .el-scrollbar__wrap"></el-backtop>

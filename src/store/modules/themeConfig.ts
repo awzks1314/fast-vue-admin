@@ -1,4 +1,6 @@
 import { Module } from 'vuex';
+// 此处加上 `.ts` 后缀报错，具体原因不详
+import { ThemeConfigState, RootStateTypes } from '@/store/interface/index';
 
 /**
  * 2020.05.28 by lyt 优化
@@ -74,7 +76,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			 * 界面显示
 			 */
 			// 是否开启侧边栏 Logo
-			isShowLogo: false,
+			isShowLogo: true,
 			// 初始化变量，用于 el-scrollbar 的高度更新，请勿删除
 			isShowLogoChange: false,
 			// 是否开启 Breadcrumb，强制经典、横向布局不显示
@@ -90,7 +92,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			// 是否开启 TagsView 拖拽
 			isSortableTagsView: true,
 			// 是否开启 Footer 底部版权信息
-			isFooter: false,
+			isFooter: true,
 			// 是否开启灰色模式
 			isGrayscale: false,
 			// 是否开启色弱模式

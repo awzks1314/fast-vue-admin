@@ -1,6 +1,6 @@
 <template>
     <div class="layout-navbars-breadcrumb-index">
-        <Logo v-if="setIsShowLogo"/>
+        <Logo v-if="setIsShowLogo"/> 
         <!-- 头部左侧面包屑 首页/订单/列表 -->
         <Breadcrumb/>
         <!-- 设置是否显示横向导航菜单 layout == 'transverse' -->
@@ -43,7 +43,7 @@ export default {
     // 设置是否显示横向导航菜单
     const isLayoutTransverse = computed(() => {
         let { layout,isClassicSplitMenu } = store.state.themeConfig.themeConfig;
-        return layout === 'transerve' || (isClassicSplitMenu && layout === 'transverse')
+        return layout === 'transerve' || (isClassicSplitMenu && layout === 'classic')
     }) 
 
     // 设置/过滤路由(非晶态路由/是否显示在菜单中)
@@ -53,6 +53,8 @@ export default {
             state.menuList = delClassicChildren(filterRoutesFun(store.state.routesList.routesList))
             const resData = setSendClassicChildren(route.path)
             proxy.mittBus.emit('setSendClassicChildren', resData);
+        }else {
+            state.menuList = filterRoutesFun(store.state.routesList.routesList);
         }
     }
     // 经典模式，分割菜单，删除children

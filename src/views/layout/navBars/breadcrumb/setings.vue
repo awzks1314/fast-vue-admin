@@ -370,7 +370,7 @@ import { nextTick, onUnmounted, onMounted, getCurrentInstance, defineComponent, 
 import { ElMessage } from 'element-plus';
 import ClipboardJS from 'clipboard';
 import { useI18n } from 'vue-i18n';
-import { useStore } from '@/store/index';
+import { useStore } from '@/store/index'; 
 import { getLightColor } from '@/utils/theme';
 import Watermark from '@/utils/wartermark';
 import { verifyAndSpace } from '@/utils/toolsValidate';
@@ -388,19 +388,21 @@ export default defineComponent({
 		});
 		// 1、全局主题
 		const onColorPickerChange = (color: string) => {
-			setPropertyFun(`--color-${color}`, getThemeConfig.value[color]);
+			let config: any  = getThemeConfig.value
+			setPropertyFun(`--color-${color}`, config[color]);
 			setDispatchThemeConfig();
 		};
 		// 1、全局主题设置函数
 		const setPropertyFun = (color: string, targetVal: any) => {
 			document.documentElement.style.setProperty(color, targetVal);
 			for (let i = 1; i <= 9; i++) {
-				document.documentElement.style.setProperty(`${color}-light-${i}`, getLightColor(targetVal, i / 10));
+				document.documentElement.style.setProperty(`${color}-light-${i}`, `${getLightColor(targetVal, i / 10)}`);
 			}
 		};
 		// 2、菜单 / 顶栏
 		const onBgColorPickerChange = (bg: string) => {
-			document.documentElement.style.setProperty(`--bg-${bg}`, getThemeConfig.value[bg]);
+			let config: any  = getThemeConfig.value
+			document.documentElement.style.setProperty(`--bg-${bg}`, config[bg]);
 			onTopBarGradualChange();
 			onMenuBarGradualChange();
 			onColumnsMenuBarGradualChange();

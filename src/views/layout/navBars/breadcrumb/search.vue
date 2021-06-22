@@ -69,7 +69,7 @@ export default defineComponent({
       })
     }
     // 当前选中菜单
-    const onHandSelect = (item: any) => {
+    const onHandleSelect = (item: any) => {
       const { path, redirect } = item
       if (item.meta.isLink && !item.meta.isIframe) window.open(item.meta.link)
       else if (redirect) router.push(redirect)
@@ -84,7 +84,7 @@ export default defineComponent({
       layoutMenuAutocompleteRef,
       menuSearch,
       onSearchBlur,
-      onHandSelect,
+      onHandleSelect,
       openSearch,
       closeSearch,
       ...toRefs(state)

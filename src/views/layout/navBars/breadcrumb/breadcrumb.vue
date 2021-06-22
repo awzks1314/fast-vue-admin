@@ -12,13 +12,13 @@
                     <span v-if="k == breadcrumbList.length - 1" class="layout-navbars-breadcrumb-span">
                         <i class="layout-navbars-breadcrumb-iconfont" :class='v.meta.icon'
                         v-if="getThemeConfig.isBreadcrumbIcon" 
-                        ></i>{{v.meta.title}}
+                        ></i>{{ $t(v.meta.title) }}
                     </span>
                     <a v-else @click.prevent="onBreadcrumbClick(v)">
                         <i class="layout-navbars-breadcrumb-iconfont" :class='v.meta.icon'
                         v-if="getThemeConfig.isBreadcrumbIcon" 
-                        ></i>{{v.meta.title}}
-                    </a> 
+                        ></i>{{ $t(v.meta.title) }}
+                    </a>  
                 </el-breadcrumb-item>
             </transition-group> 
         </el-breadcrumb>
