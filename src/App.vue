@@ -63,7 +63,7 @@ export default defineComponent({
         nextTick(() => {
           let webTitle = ''
           // (webTitle = t(route.meta.title))
-          route.path === '/login' ? ((webTitle as any) = route.meta.path) : '15464'
+          route.path === '/login' ? (webTitle = route.meta.title) : (webTitle = t(route.meta.title));
           document.title = `${webTitle} - ${getThemeConfig.value.globalTitle}` || getThemeConfig.value.globalTitle;
         })
       }

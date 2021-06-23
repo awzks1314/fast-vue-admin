@@ -3,7 +3,7 @@
 		<el-form-item>
 			<el-input
 				type="text"
-				placeholder="('message.account.accountPlaceholder1')"
+				:placeholder="$t('message.account.accountPlaceholder1')"
 				prefix-icon="el-icon-user"
 				v-model="ruleForm.userName"
 				clearable
@@ -14,7 +14,7 @@
 		<el-form-item>
 			<el-input
 				type="password"
-				placeholder="('message.account.accountPlaceholder2')"
+				:placeholder="$t('message.account.accountPlaceholder2')"
 				prefix-icon="el-icon-lock"
 				v-model="ruleForm.password"
 				autocomplete="off"
@@ -28,7 +28,7 @@
 					<el-input
 						type="text"
 						maxlength="4"
-						placeholder="('message.account.accountPlaceholder3')"
+						:placeholder="$t('message.account.accountPlaceholder3')"
 						prefix-icon="el-icon-position"
 						v-model="ruleForm.code"
 						clearable
@@ -44,7 +44,7 @@
 		</el-form-item>
 		<el-form-item>
 			<el-button type="primary" class="login-content-submit" round @click="onSignIn" :loading="loading.signIn">
-				<span>{{ ('message.account.accountBtnText') }}</span>
+				<span>{{ $t('message.account.accountBtnText') }}</span>
 			</el-button>
 		</el-form-item>
 	</el-form>
@@ -105,7 +105,9 @@ export default defineComponent({
       const userInfos = {
         userName: state.ruleForm.userName,
         photo:
-			state.ruleForm.userName === 'admin' ? 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1813762643,1914315241&fm=26&gp=0.jpg' : 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=317673774,2961727727&fm=26&gp=0.jpg',
+			state.ruleForm.userName === 'admin' ?
+			 'https://q1.qlogo.cn/g?b=qq&nk=1401452384&s=100' 
+			 : 'https://q1.qlogo.cn/g?b=qq&nk=54187454&s=100',
         time: new Date().getTime(),
         authPageList: defaultAuthPageList,
         authBtnList: defaultAuthBtnList
@@ -132,7 +134,7 @@ export default defineComponent({
       }
     }
     // 登录成功后的跳转
-    const signInSuccess = () => {
+    const signInSuccess = () => { 
       // 初始化登录成功时间问候语
       const currentTimeInfo = currentTime.value
       // 登录成功，跳到转首页

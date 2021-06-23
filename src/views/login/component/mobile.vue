@@ -3,7 +3,7 @@
 		<el-form-item>
 			<el-input
 				type="text"
-				placeholder="('message.mobile.placeholder1')"
+				:placeholder="$t('message.mobile.placeholder1')"
 				prefix-icon="el-icon-user"
 				v-model="ruleForm.userName"
 				clearable
@@ -17,7 +17,7 @@
 					<el-input
 						type="text"
 						maxlength="4"
-						placeholder="('message.mobile.placeholder2')"
+						:placeholder="$t('message.mobile.placeholder2')"
 						prefix-icon="el-icon-position"
 						v-model="ruleForm.code"
 						clearable
@@ -25,13 +25,13 @@
 					></el-input>
 				</el-col>
 				<el-col :span="8">
-					<el-button>{{ ('message.mobile.codeText') }}</el-button>
+					<el-button>{{ $t('message.mobile.codeText') }}</el-button>
 				</el-col>
 			</el-row>
 		</el-form-item>
 		<el-form-item>
 			<el-button type="primary" class="login-content-submit" round>
-				<span>{{ ('message.mobile.btnText') }}</span>
+				<span>{{ $t('message.mobile.btnText') }}</span>
 			</el-button>
 		</el-form-item>
 	</el-form>
