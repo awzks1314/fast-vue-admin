@@ -1,0 +1,1 @@
+import{u as r}from"./index.d89cbfe3.js";import{f as o,h as t}from"./vendor.e37295fd.js";var e={name:"Home",setup(){r()}};function n(s,a,c,d,f,p){return o(),t("div",null," 11111 ")}e.render=n;export default e;
