@@ -18,7 +18,7 @@ const viteConfig: UserConfig = {
 	plugins: [vue()],
 	root: process.cwd(),
 	resolve: { alias },
-	base: process.env.NODE_ENV === 'production' ? VITE_PUBLIC_PATH : './',
+	base: process.env.NODE_ENV === 'production' ? '/freeVue' : './',
 	optimizeDeps: {
 		include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en', 'element-plus/lib/locale/lang/zh-tw'],
 	},
@@ -27,11 +27,11 @@ const viteConfig: UserConfig = {
 		port: VITE_PORT,
 		open: VITE_OPEN,
 		proxy: {
-			'/gitee': {
-				target: 'https://gitee.com',
+			'/github': {
+				target: 'https://github.com',
 				ws: true,
 				changeOrigin: true,
-				rewrite: (path) => path.replace(/^\/gitee/, ''),
+				rewrite: (path) => path.replace(/^\/github/, ''),
 			},
 		},
 	},
