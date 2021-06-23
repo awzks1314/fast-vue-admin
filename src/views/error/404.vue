@@ -4,10 +4,10 @@
 			<div class="left">
 				<div class="left-item">
 					<div class="left-item-animation left-item-num">404</div>
-					<div class="left-item-animation left-item-title">{{ ('message.notFound.foundTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ 'message.notFound.foundMsg' }}</div>
+					<div class="left-item-animation left-item-title">{{ $t('message.notFound.foundTitle') }}</div>
+					<div class="left-item-animation left-item-msg">{{ $t('message.notFound.foundMsg') }}</div>
 					<div class="left-item-animation left-item-btn">
-						<n-button type="primary" round @click="onGoHome">{{ ('message.notFound.foundBtn') }}</n-button>
+						<el-button type="primary" round @click="onGoHome">{{ $t('message.notFound.foundBtn') }}</el-button>
 					</div>
 				</div>
 			</div>

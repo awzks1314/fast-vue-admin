@@ -1,14 +1,14 @@
 <template>
-    <div class="layout-footer mt15" v-show="isDelayFooter">
-        <div class="layout-footer-warp">
-			<div>vue-next-admin，Made by lyt with ❤️</div>
+	<div class="layout-footer mt15" v-show="isDelayFooter">
+		<div class="layout-footer-warp">
+			<div>freeVue，一个后台管理系统模板 {{'<(*￣▽￣*)/'}}</div>
 			<div class="mt5">{{ $t('message.copyright.one5') }}</div>
 		</div>
-    </div>
+	</div>
 </template>
- 
+
 <script lang="ts">
-import { reactive, toRefs } from 'vue'
+import { toRefs, reactive } from 'vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 export default {
   name: 'LayoutFooter',
@@ -29,3 +29,16 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.layout-footer {
+	width: 100%;
+	display: flex;
+	&-warp {
+		margin: auto;
+		color: #9e9e9e;
+		text-align: center;
+		animation: logoAnimation 0.3s ease-in-out;
+	}
+}
+</style>

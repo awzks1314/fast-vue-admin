@@ -1,25 +1,27 @@
 <template>
-    <transition name="el-zoom-in-center">
-		<div
-			aria-hidden="true"
-			class="el-dropdown__popper el-popper is-light is-pure custom-contextmenu"
-			role="tooltip"
-			data-popper-placement="bottom"
-			:style="`top: ${dropdowns.y + 5}px;left: ${dropdowns.x}px;`"
-			:key="Math.random()"
-			v-show="isShow"
-		>
-			<ul class="el-dropdown-menu">
-				<template v-for="(v, k) in dropdownList">
-					<li class="el-dropdown-menu__item" aria-disabled="false" tabindex="-1" :key="k" v-if="!v.affix" @click="onCurrentContextmenuClick(v.id)">
-						<i :class="v.icon"></i>
-						<span>{{ $t(v.txt) }}</span>
-					</li>
-				</template>
-			</ul>
-			<div class="el-popper__arrow" style="left: 10px"></div>
-		</div>
-	</transition>
+    <div>
+      <transition name="el-zoom-in-center">
+      <div
+        aria-hidden="true"
+        class="el-dropdown__popper el-popper is-light is-pure custom-contextmenu"
+        role="tooltip"
+        data-popper-placement="bottom"
+        :style="`top: ${dropdowns.y + 5}px;left: ${dropdowns.x}px;`"
+        :key="Math.random()"
+        v-show="isShow"
+      >
+        <ul class="el-dropdown-menu">
+          <template v-for="(v, k) in dropdownList">
+            <li class="el-dropdown-menu__item" aria-disabled="false" tabindex="-1" :key="k" v-if="!v.affix" @click="onCurrentContextmenuClick(v.id)">
+              <i :class="v.icon"></i>
+              <span>{{ $t(v.txt) }}</span>
+            </li>
+          </template>
+        </ul>
+        <div class="el-popper__arrow" style="left: 10px"></div>
+      </div>
+    </transition>
+    </div>
 </template>
 
 <script lang="ts">

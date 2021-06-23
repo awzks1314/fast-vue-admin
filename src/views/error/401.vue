@@ -4,10 +4,10 @@
 			<div class="left">
 				<div class="left-item">
 					<div class="left-item-animation left-item-num">401</div>
-					<div class="left-item-animation left-item-title">{{ ('message.noAccess.accessTitle') }}</div>
-					<div class="left-item-animation left-item-msg">{{ ('message.noAccess.accessMsg') }}</div>
+					<div class="left-item-animation left-item-title">{{ $t('message.noAccess.accessTitle') }}</div>
+					<div class="left-item-animation left-item-msg">{{ $t('message.noAccess.accessMsg') }}</div>
 					<div class="left-item-animation left-item-btn">
-						<n-button type="primary" round @click="onSetAuth">{{ ('message.noAccess.accessBtn') }}</n-button>
+						<el-button type="primary" round @click="onSetAuth">{{ $t('message.noAccess.accessBtn') }}</el-button>
 					</div>
 				</div>
 			</div>

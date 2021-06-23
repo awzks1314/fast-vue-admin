@@ -6,7 +6,7 @@ const userInfosModule: Module<UserInfosState, RootStateTypes> = {
 	namespaced: true,
 	state: {
 		userInfos: {},
-	},
+	}, 
 	mutations: {
 		// 设置用户信息
 		getUserInfos(state: any, data: object) {

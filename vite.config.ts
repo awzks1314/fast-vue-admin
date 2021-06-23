@@ -1,36 +1,50 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import path from "path";
-export default defineConfig({
-  plugins: [vue()],
-  base: process.env.NODE_ENV === 'production'? '/freeVue': './',
-  resolve: {
-    alias: {
-      // 如果报错__dirname找不到，需要安装node,执行npm install @types/node --save-dev
-      "@": path.resolve(__dirname, "src"),    
-      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
-    }
-  },
-  build: {
-    outDir: "dist",
-  },
-  server: {
-    https: false, // 是否开启 https
-    open: false, // 是否自动在浏览器打开
-    port: 3456, // 端口号
-    host: "0.0.0.0",
-    proxy: {
-      "/api": {
-        target: "", // 后台接口
-        changeOrigin: true,
-        secure: false, // 如果是https接口，需要配置这个参数
-        // ws: true, //websocket支持
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
-  // 引入第三方的配置
-  optimizeDeps: {
-    include: [],
-  },
-});
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
+import type { UserConfig } from 'vite';
+import { loadEnv } from './src/utils/viteBuild';
+
+const pathResolve = (dir: string): any => {
+	return resolve(__dirname, '.', dir);
+};
+
+const { VITE_PORT, VITE_OPEN, VITE_PUBLIC_PATH } = loadEnv();
+
+const alias: Record<string, string> = {
+	'@': pathResolve('/src/'),
+	'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
+};
+
+const viteConfig: UserConfig = {
+	plugins: [vue()],
+	root: process.cwd(),
+	resolve: { alias },
+	base: process.env.NODE_ENV === 'production' ? VITE_PUBLIC_PATH : './',
+	optimizeDeps: {
+		include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en', 'element-plus/lib/locale/lang/zh-tw'],
+	},
+	server: {
+		host: '0.0.0.0',
+		port: VITE_PORT,
+		open: VITE_OPEN,
+		proxy: {
+			'/gitee': {
+				target: 'https://gitee.com',
+				ws: true,
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/gitee/, ''),
+			},
+		},
+	},
+	build: {
+		outDir: 'dist',
+		minify: 'esbuild',
+		sourcemap: false,
+	},
+	define: {
+		__VUE_I18N_LEGACY_API__: JSON.stringify(false),
+		__VUE_I18N_FULL_INSTALL__: JSON.stringify(false),
+		__INTLIFY_PROD_DEVTOOLS__: JSON.stringify(false),
+	},
+};
+
+export default viteConfig;
