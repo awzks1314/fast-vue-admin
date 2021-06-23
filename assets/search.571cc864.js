@@ -1,0 +1,12 @@
+var V=Object.defineProperty;var S=Object.getOwnPropertySymbols;var _=Object.prototype.hasOwnProperty,v=Object.prototype.propertyIsEnumerable;var w=(e,o,t)=>o in e?V(e,o,{enumerable:!0,configurable:!0,writable:!0,value:t}):e[o]=t,p=(e,o)=>{for(var t in o||(o={}))_.call(o,t)&&w(e,t,o[t]);if(S)for(var t of S(o))v.call(o,t)&&w(e,t,o[t]);return e};import{u as y}from"./index.6243c594.js";import{x as b,r as L,X as B,a as k,t as C,n as I,p as R,d as $,e as g,f as x,h as H,i as c,k as Q,l as T,q as j}from"./vendor.445db117.js";var h=b({name:"LayoutBreadcrumbSearch",setup(){const e=L(),o=y(),t=B(),s=k({isShowSearch:!1,menuQuery:"",tagsViewList:[]}),f=()=>{s.menuQuery="",s.isShowSearch=!0,n(),I(()=>{e.value.focus()})},r=()=>{s.isShowSearch=!1},i=(a,l)=>{const u=a?s.tagsViewList.filters(d(a)):s.tagsViewList;l(u)},d=a=>l=>l.path.toLowerCase().indexOf(a.toLowerCase())>-1||l.meta.title.toLowerCase().indexOf(a.toLowerCase())>-1,n=()=>{if(s.tagsViewList.length>0)return!1;o.state.tagsViewRoutes.tagsViewRoutes.map(a=>{a.meta.isHide||s.tagsViewList.push(p({},a))})};return p({layoutMenuAutocompleteRef:e,menuSearch:i,onSearchBlur:()=>{r()},onHandleSelect:a=>{const{path:l,redirect:u}=a;a.meta.isLink&&!a.meta.isIframe?window.open(a.meta.link):u?t.push(u):t.push(l),r()},openSearch:f,closeSearch:r},C(s))}}),F=`.layout-search-dialog[data-v-45bd519e] .el-dialog {
+  box-shadow: unset !important;
+  border-radius: 0 !important;
+  background: rgba(0, 0, 0, 0.5);
+}
+.layout-search-dialog[data-v-45bd519e] .el-autocomplete {
+  width: 560px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}`;const m=j();R("data-v-45bd519e");const A={class:"layout-search-dialog"};$();const M=m((e,o,t,s,f,r)=>{const i=g("el-autocomplete"),d=g("el-dialog");return x(),H("div",A,[c(d,{modelValue:e.isShowSearch,"onUpdate:modelValue":o[2]||(o[2]=n=>e.isShowSearch=n),width:"300px","destroy-on-close":"",modal:!1,fullscreen:"","show-close":!1},{default:m(()=>[c(i,{modelValue:e.menuQuery,"onUpdate:modelValue":o[1]||(o[1]=n=>e.menuQuery=n),"fetch-suggestions":e.menuSearch,placeholder:e.$t("message.user.searchPlaceholder"),"prefix-icon":"el-icon-search",ref:"layoutMenuAutocompleteRef",onSelect:e.onHandleSelect,onBlur:e.onSearchBlur},{default:m(({item:n})=>[c("div",null,[c("i",{class:[n.meta.icon,"mr10"]},null,2),Q(T(e.$t(n.meta.title)),1)])]),_:1},8,["modelValue","fetch-suggestions","placeholder","onSelect","onBlur"])]),_:1},8,["modelValue"])])});h.render=M,h.__scopeId="data-v-45bd519e";export default h;
