@@ -15,10 +15,10 @@
 <script lang="ts">
 import { computed, getCurrentInstance, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from '@/store/index'
-import Aside from '@/views/layout/component/aside.vue'
-import Header from '@/views/layout/component/header.vue'
-import Main from '@/views/layout/component/main.vue'
+import { useStore } from '/@/store/index'
+import Aside from '/@/views/layout/component/aside.vue'
+import Header from '/@/views/layout/component/header.vue'
+import Main from '/@/views/layout/component/main.vue'
 export default {
   name: 'LayoutDefaults',
   components: { Aside, Header, Main },

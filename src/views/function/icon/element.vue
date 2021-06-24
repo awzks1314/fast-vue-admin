@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { toRefs, reactive, onMounted } from 'vue'
-import initIconfont from '@/utils/getStyleSheets'
+import initIconfont from '/@/utils/getStyleSheets'
 import ClipboardJS from 'clipboard'
 import { useI18n } from 'vue-i18n'
 import { ElMessage } from 'element-plus'

@@ -6,13 +6,13 @@
 		:collapse="setIsCollapse" 
 		:unique-opened="getThemeConfig.isUniqueOpened"
 		:collapse-transition="false" 
-	>
+	>  
 		<template v-for="val in menuLists">
 			<el-submenu :index="val.path" v-if="val.children && val.children.length > 0" :key="val.path">
 				<template #title>
 					<i :class="val.meta.icon ? val.meta.icon : ''"></i>
 					<span>{{ $t(val.meta.title) }}</span>
-				</template> 
+				</template>
 				<SubItem :chil="val.children" />
 			</el-submenu>
 			<el-menu-item :index="val.path" :key="val.path" v-else>
@@ -31,8 +31,8 @@
 <script lang="ts">
 import { toRefs, reactive, computed, defineComponent, getCurrentInstance } from 'vue';
 import { useRoute, onBeforeRouteUpdate } from 'vue-router';
-import { useStore } from '@/store/index';
-import SubItem from '@/views/layout/navMenu/subItem.vue';
+import { useStore } from '/@/store/index';
+import SubItem from '/@/views/layout/navMenu/subItem.vue';
 export default defineComponent({
 	name: 'navMenuVertical',
 	components: { SubItem },
@@ -40,7 +40,7 @@ export default defineComponent({
 		menuList: {
 			type: Array,
 			default: () => [],
-		},
+		}
 	},
 	setup(props) {
 		const { proxy } = getCurrentInstance() as any;
@@ -49,9 +49,8 @@ export default defineComponent({
 		const state = reactive({
 			defaultActive: route.path,
 		});
-		console.log(props.menuList)
 		// 获取父级菜单数据
-		const menuLists = computed(() => {
+		const menuLists = computed(() => { 
 			return props.menuList;
 		});
 		// 获取布局配置信息

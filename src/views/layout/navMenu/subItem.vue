@@ -1,32 +1,32 @@
 <template>
-    <div>
-      <template v-for="val in chil" >
-          <el-submenu :index="val.path" :key="val.path" v-if="val.children && val.children.length > 0">
-        <template #title>
-          <i :class="val.meta.icon"></i>
-          <span>{{$t(val.meta.title)}}</span>
-        </template>
-        <sub-item :chil="val.children" />
-      </el-submenu>
-          <el-menu-item :index="val.path" :key="val.path" v-else>
-        <template v-if="!val.meta.isLink || (val.meta.isLink && val.meta.isIframe)">
-          <i :class="val.meta.icon ? val.meta.icon : ''"></i>
-          <span>{{ $t(val.meta.title)}}</span>
-        </template>
-        <template v-else>
-          <a :href="val.meta.isLink" target="_blank">
-            <i :class="val.meta.icon ? val.meta.icon : ''"></i>
-            {{ $t(val.meta.title) }}
-          </a>
-        </template>
-      </el-menu-item>
-      </template>
-    </div>
+	<div>
+		<template v-for="val in chils">
+			<el-submenu :index="val.path" :key="val.path" v-if="val.children && val.children.length > 0">
+				<template #title>
+					<i :class="val.meta.icon"></i>
+					<span>{{ $t(val.meta.title) }}</span>
+				</template>
+				<sub-item :chil="val.children" />
+			</el-submenu>
+			<el-menu-item :index="val.path" :key="val.path" v-else>
+				<template v-if="!val.meta.isLink || (val.meta.isLink && val.meta.isIframe)">
+					<i :class="val.meta.icon ? val.meta.icon : ''"></i>
+					<span>{{ $t(val.meta.title) }}</span>
+				</template>
+				<template v-else>
+					<a :href="val.meta.isLink" target="_blank">
+						<i :class="val.meta.icon ? val.meta.icon : ''"></i>
+						{{ $t(val.meta.title) }}
+					</a>
+				</template>
+			</el-menu-item>
+		</template>
+	</div>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
-export default {
+import { computed, defineComponent } from 'vue'
+export default defineComponent({
   name: 'NavMenuSubItem',
   props: {
     chil: {
@@ -35,7 +35,7 @@ export default {
     }
   },
   setup(props) {
-    //  获取菜单数据
+    // 获取父级菜单数据
     const chils = computed(() => {
       return props.chil
     })
@@ -43,5 +43,5 @@ export default {
       chils
     }
   }
-}
+})
 </script>

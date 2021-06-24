@@ -18,16 +18,16 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
 		name: '/',
-		component: () => import('@/views/layout/index.vue'),
+		component: () => import('/@/views/layout/index.vue'),
 		redirect: '/home',
-		meta: { 
+		meta: {  
 			isKeepAlive: true,
 		},
 		children: [
 			{ 
 				path: '/home',
 				name: 'home',
-				component: () => import('@/views/home/index.vue'),
+				component: () => import('/@/views/home/index.vue'),
 				meta: {
 					title: 'message.router.home',
 					isLink: '',
@@ -39,10 +39,25 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					icon: 'iconfont icon-shouye', 
 				}
 			}, 
+			{ 
+				path: '/order',
+				name: 'order',
+				component: () => import('/@/views/order/index.vue'),
+				meta: {
+					title: 'message.router.systemMenu',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
+					isIframe: false, 
+					auth: ['admin', 'test'],
+					icon: 'iconfont icon-shouye', 
+				}
+			},
 			{
 				path: '/function',
 				name: 'function',
-				component: () => import('@/views/layout/routerView/parent.vue'),
+				component: () => import('/@/views/layout/routerView/parent.vue'),
 				redirect: '/function/icon',
 				meta: {
 					title: 'message.router.funIndex',
@@ -58,7 +73,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					{
 						path: '/function/icon',
 						name: 'functionIcon',
-						component: () => import('@/views/layout/routerView/parent.vue'),
+						component: () => import('/@/views/layout/routerView/parent.vue'),
 						redirect: '/function/icon/element',
 						meta: {
 							title: 'message.router.funIcon',
@@ -74,7 +89,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							{
 								path: '/function/icon/element',
 								name: 'functionIconElement',
-								component: () => import('@/views/function/icon/element.vue'),
+								component: () => import('/@/views/function/icon/element.vue'),
 								meta: {
 									title: 'message.router.pagesElement',
 									isLink: '',
@@ -89,7 +104,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							{
 								path: '/function/icon/iconfont',
 								name: 'functionIconIconfont',
-								component: () => import('@/views/function/icon/iconfont.vue'),
+								component: () => import('/@/views/function/icon/iconfont.vue'),
 								meta: {
 									title: 'message.router.pagesIocnfont',
 									isLink: '',
@@ -104,7 +119,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 							{
 								path: '/function/icon/awesome',
 								name: 'functionIconAwesome',
-								component: () => import('@/views/function/icon/awesome.vue'),
+								component: () => import('/@/views/function/icon/awesome.vue'),
 								meta: {
 									title: 'message.router.pagesAwesome',
 									isLink: '',
@@ -133,7 +148,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/login/index.vue'),
+      component: () => import('/@/views/login/index.vue'),
       meta: {
           title: '登陆',
       },
@@ -141,7 +156,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
     {
         path:'/404',
         name: 'notFound',
-        component: () => import('@/views/error/404.vue'),
+        component: () => import('/@/views/error/404.vue'),
         meta: {
             title:'找不到此页面'
         }
@@ -149,7 +164,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
     {
         path: '/401',
         name: 'noPower',
-        component: () => import('@/views/error/401.vue'),
+        component: () => import('/@/views/error/401.vue'),
         meta: {
             title: '没有权限',
         },

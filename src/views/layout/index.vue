@@ -1,26 +1,30 @@
 <template>
 	<Defaults v-if="getThemeConfig.layout === 'defaults'" />
-	<!-- <Classic v-else-if="getThemeConfig.layout === 'classic'" />
+	<Classic v-else-if="getThemeConfig.layout === 'classic'" />  
 	<Transverse v-else-if="getThemeConfig.layout === 'transverse'" />
-	<Columns v-else-if="getThemeConfig.layout === 'columns'" /> -->
+	<Subfield v-else-if="getThemeConfig.layout === 'columns'" />
 </template>
-
+  
 <script lang="ts">
 import { defineAsyncComponent, computed, getCurrentInstance, onBeforeMount, onUnmounted } from 'vue'
-import { useStore } from '@/store/index'
-import { Local } from '@/utils/storage'
+import { useStore } from '/@/store/index'
+import { Local } from '/@/utils/storage'
 export default {
-  name: 'Layout',
+  name: 'Layout', 
   components: {
-    Defaults: defineAsyncComponent(() => import('@/views/layout/main/defaults.vue'))
+    Defaults: defineAsyncComponent(() => import('/@/views/layout/main/defaults.vue')),
+    Classic: defineAsyncComponent(() => import('/@/views/layout/main/classic.vue')),
+    Transverse: defineAsyncComponent(() => import('/@/views/layout/main/transverse.vue')),
+    Subfield: defineAsyncComponent(() => import('/@/views/layout/main/subfield.vue'))
   },
-  setup() {
+  setup() { 
     const { proxy } = getCurrentInstance() as any;
     const store = useStore()
     // 获取布局配置信息
     const getThemeConfig = computed(() => {
       return store.state.themeConfig.themeConfig
     })
+    console.log(getThemeConfig.value.layout)
     // 窗口大小改变时(适配移动端)
     const onLayoutResize = () => {
       const clientWidth = document.body.clientWidth

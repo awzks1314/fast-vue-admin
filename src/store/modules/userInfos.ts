@@ -1,6 +1,6 @@
 import { Module } from 'vuex';
-import { Session } from '@/utils/storage';
-import { UserInfosState, RootStateTypes } from '@/store/interface/index';
+import { Session } from '/@/utils/storage';
+import { UserInfosState, RootStateTypes } from '/@/store/interface/index';
  
 const userInfosModule: Module<UserInfosState, RootStateTypes> = {
 	namespaced: true,

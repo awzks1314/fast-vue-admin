@@ -55,11 +55,11 @@ import { toRefs, reactive, defineComponent, computed, getCurrentInstance } from 
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
-import { initFrontEndControlRoutes } from '@/router/frontEnd'
-import { initBackEndControlRoutes } from '@/router/backEnd'
-import { useStore } from '@/store/index'
-import { Session } from '@/utils/storage'
-import { formatAxis } from '@/utils/formatTime'
+import { initFrontEndControlRoutes } from '/@/router/frontEnd'
+import { initBackEndControlRoutes } from '/@/router/backEnd'
+import { useStore } from '/@/store/index'
+import { Session } from '/@/utils/storage'
+import { formatAxis } from '/@/utils/formatTime'
 export default defineComponent({
   name: 'Login',
   setup() {

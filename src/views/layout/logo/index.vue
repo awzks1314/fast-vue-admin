@@ -1,18 +1,19 @@
 <template>
-	<div>
+	<div class="borderNone">
 		<div class="layout-logo" v-if="setShowLogo" @click="onThemeConfigChange">
-			<img src="https://gitee.com/lyt-top/vue-next-admin-images/raw/master/logo/logo-mini.svg" class="layout-logo-medium-img" />
+			<img :src="getThemeConfig.globalLogo" class="layout-logo-medium-img" v-if="getThemeConfig.layout !== 'columns'"/>
 			<span>{{ getThemeConfig.globalTitle }}</span>
-		</div>
+		</div>  
 		<div class="layout-logo-size" v-else @click="onThemeConfigChange">
-			<img src="https://gitee.com/lyt-top/vue-next-admin-images/raw/master/logo/logo-mini.svg" class="layout-logo-size-img" />
+			<img :src="getThemeConfig.globalLogo" class="layout-logo-size-img" v-if="getThemeConfig.layout !== 'columns'"/>
 		</div>
+		<!-- <el-divider content-position="center" class="divider" v-if="getThemeConfig.layout == 'columns'">功能菜单</el-divider> -->
 	</div>
 </template>
 
 <script lang="ts">
 import { computed, getCurrentInstance } from 'vue';
-import { useStore } from '@/store/index';
+import { useStore } from '/@/store/index';
 export default {
 	name: 'layoutLogo',
 	setup() {
@@ -23,9 +24,10 @@ export default {
 			return store.state.themeConfig.themeConfig;
 		});
 		// 设置 logo 的显示。classic 经典布局默认显示 logo
-		const setShowLogo = computed(() => {
+		const setShowLogo = computed(() => { 
 			let { isCollapse, layout } = store.state.themeConfig.themeConfig;
-			return !isCollapse || layout === 'classic' || document.body.clientWidth < 1000;
+			console.log(layout)
+			return !isCollapse  ||layout === 'classic' || layout === 'transverse' || document.body.clientWidth < 1000;
 		});
 		// logo 点击实现菜单展开/收起
 		const onThemeConfigChange = () => {
@@ -43,15 +45,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// .borderNone{
+// 	border-right:1px solid transparent;
+// }
+.divider{
+	margin: 8px 0!important;
+}
 .layout-logo {
 	width: 220px;
-	height: 50px;
+	height: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	box-shadow: rgb(0 21 41 / 2%) 0px 1px 4px;
 	color: var(--color-primary);
-	font-size: 16px;
+	font-size: 20px;
 	cursor: pointer;
 	animation: logoAnimation 0.3s ease-in-out;
 	&:hover {
@@ -66,7 +74,7 @@ export default {
 }
 .layout-logo-size {
 	width: 100%;
-	height: 50px;
+	height: 60px;
 	display: flex;
 	cursor: pointer;
 	animation: logoAnimation 0.3s ease-in-out;

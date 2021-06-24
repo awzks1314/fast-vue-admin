@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { computed } from 'vue'
-import { useStore } from '@/store/index'
-import NavBarsIndex from '@/views/layout/navBars/index.vue'
+import { useStore } from '/@/store/index'
+import NavBarsIndex from '/@/views/layout/navBars/index.vue'
 export default {
   name: 'LayoutHeader',
   components: { NavBarsIndex },
@@ -16,8 +16,8 @@ export default {
     //   设置header高度
     const setHeaderHeight = computed(() => {
       const { isTagsview, layout } = store.state.themeConfig.themeConfig
-      if (isTagsview && layout !== 'classic') return '84px'
-      else return '50px'
+      if (isTagsview && layout !== 'classic') return '100px'
+      else return '60px'
     })
     return {
       setHeaderHeight

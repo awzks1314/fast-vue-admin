@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-import { RequestOldRoutesState, RootStateTypes } from '@/store/interface/index';
+import { RequestOldRoutesState, RootStateTypes } from '/@/store/interface/index';
 
 const requestOldRoutesModule: Module<RequestOldRoutesState, RootStateTypes> = {
 	namespaced: true,

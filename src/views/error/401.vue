@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { useRouter } from 'vue-router'
-import { Session } from '@/utils/storage'
+import { Session } from '/@/utils/storage'
 export default {
   name: '401',
   setup() {

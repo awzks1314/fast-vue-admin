@@ -1,7 +1,7 @@
-import { store } from '@/store/index';
-import { Session } from '@/utils/storage';
-import { NextLoading } from '@/utils/loading';
-import { setAddRoute, setFilterMenuAndCacheTagsViewRoutes } from '@/router/index';
+import { store } from '/@/store/index';
+import { Session } from '/@/utils/storage';
+import { NextLoading } from '/@/utils/loading';
+import { setAddRoute, setFilterMenuAndCacheTagsViewRoutes } from '/@/router/index';
 
 /**
  * 前端控制路由：初始化方法，防止刷新时路由丢失

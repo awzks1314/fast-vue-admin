@@ -370,11 +370,11 @@ import { nextTick, onUnmounted, onMounted, getCurrentInstance, defineComponent, 
 import { ElMessage } from 'element-plus';
 import ClipboardJS from 'clipboard';
 import { useI18n } from 'vue-i18n';
-import { useStore } from '@/store/index'; 
-import { getLightColor } from '@/utils/theme';
-import Watermark from '@/utils/wartermark';
-import { verifyAndSpace } from '@/utils/toolsValidate';
-import { Local } from '@/utils/storage';
+import { useStore } from '/@/store/index'; 
+import { getLightColor } from '/@/utils/theme';
+import Watermark from '/@/utils/wartermark';
+import { verifyAndSpace } from '/@/utils/toolsValidate';
+import { Local } from '/@/utils/storage';
 export default defineComponent({
 	name: 'layoutBreadcrumbSeting',
 	setup() {

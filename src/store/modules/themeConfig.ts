@@ -1,9 +1,9 @@
 import { Module } from 'vuex';
 // 此处加上 `.ts` 后缀报错，具体原因不详
-import { ThemeConfigState, RootStateTypes } from '@/store/interface/index';
+import { ThemeConfigState, RootStateTypes } from '/@/store/interface/index';
 
 /**
- * 2020.05.28 by lyt 优化
+ * 2020.05.28  优化
  * 修改一下配置时，需要每次都清理 `window.localStorage` 浏览器永久缓存，配置才会生效
  */
 const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
@@ -12,7 +12,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 		themeConfig: {
 			// 是否开启布局配置抽屉
 			isDrawer: false,
-
+			
 			/**
 			 * 全局主题
 			 */
@@ -71,7 +71,6 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			isLockScreen: false,
 			// 开启自动锁屏倒计时(s/秒)
 			lockScreenTime: 30,
-
 			/**
 			 * 界面显示
 			 */
@@ -100,8 +99,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			// 是否开启水印
 			isWartermark: false,
 			// 水印文案
-			wartermarkText: 'small@小柒',
-
+			wartermarkText: 'creater',
 			/**
 			 * 其它设置
 			 */
@@ -110,9 +108,9 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			// 主页面切换动画：可选值"<slide-right|slide-left|opacitys>"，默认 slide-right
 			animation: 'slide-right',
 			// 分栏高亮风格：可选值"<columns-round|columns-card>"，默认 columns-round
-			columnsAsideStyle: 'columns-round',
+			columnsAsideStyle: 'columns-card',
 			// 分栏布局风格：可选值"<columns-horizontal|columns-vertical>"，默认 columns-horizontal
-			columnsAsideLayout: 'columns-vertical',
+			columnsAsideLayout: 'columns-horizontal',
 
 			/**
 			 * 布局切换
@@ -120,7 +118,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			 * 中的 `initSetLayoutChange(设置布局切换，重置主题样式)` 方法
 			 */
 			// 布局切换：可选值"<defaults|classic|transverse|columns>"，默认 defaults
-			layout: 'defaults',
+			layout: 'columns',
 
 			/**
 			 * 后端控制路由
@@ -131,14 +129,16 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			/**
 			 * 全局网站标题 / 副标题
 			 */
+			// 网站logo
+			globalLogo: 'https://z3.ax1x.com/2021/06/24/RMhoCR.png',
 			// 网站主标题（菜单导航、浏览器当前网页标题）
-			globalTitle: 'freeVue',
+			globalTitle: 'freeVue后台模板',
 			// 网站副标题（登录页顶部文字）
-			globalViceTitle: 'freeVue后台管理系统框架',
+			globalViceTitle: 'freeVue后台管理系统模板',
 			// 默认初始语言，可选值"<zh-cn|en|zh-tw>"，默认 zh-cn
 			globalI18n: 'zh-cn',
 			// 默认全局组件大小，可选值"<|medium|small|mini>"，默认 ''
-			globalComponentSize: '',
+			globalComponentSize: 'medium',
 		},
 	},
 	mutations: {

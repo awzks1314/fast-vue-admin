@@ -7,13 +7,13 @@
 
 <script lang="ts">
 import { defineComponent,ref, onBeforeMount,watch, computed, getCurrentInstance, onMounted,nextTick, onUnmounted } from 'vue'
-import setIntroduction from '@/utils/setIconfont'
-import { useStore } from '@/store/index'
+import setIntroduction from '/@/utils/setIconfont'
+import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { Local } from '@/utils/storage'
-import LockScreen from '@/views/layout/lockScreen/index.vue'
-import Setings from '@/views/layout/navBars/breadcrumb/setings.vue'
+import { Local } from '/@/utils/storage'
+import LockScreen from '/@/views/layout/lockScreen/index.vue'
+import Setings from '/@/views/layout/navBars/breadcrumb/setings.vue'
 export default defineComponent({
   name: 'App',
   components: { LockScreen,Setings },

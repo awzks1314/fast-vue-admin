@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store/index'
+import { useStore } from '/@/store/index'
 export default {
   name: 'Home',
   setup() {

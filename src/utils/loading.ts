@@ -1,5 +1,5 @@
 import { nextTick } from 'vue';
-import loadingCss from '@/styles/loading.scss';
+import loadingCss from '/@/styles/loading.scss';
 
 /**
  * 页面全局 Loading

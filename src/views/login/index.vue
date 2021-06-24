@@ -36,9 +36,9 @@
 
 <script lang="ts">
 import { toRefs, reactive, computed } from 'vue'
-import Account from '@/views/login/component/account.vue'
-import Mobile from '@/views/login/component/mobile.vue'
-import { useStore } from '@/store/index'
+import Account from '/@/views/login/component/account.vue'
+import Mobile from '/@/views/login/component/mobile.vue'
+import { useStore } from '/@/store/index'
 export default {
   name: 'Login',
   components: { Account, Mobile },

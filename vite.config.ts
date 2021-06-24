@@ -10,11 +10,11 @@ const pathResolve = (dir: string): any => {
 const { VITE_PORT, VITE_OPEN, VITE_PUBLIC_PATH } = loadEnv();
 
 const alias: Record<string, string> = {
-	'@': pathResolve('/src/'),
+	'/@': pathResolve('/src/'),
 	'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
 };
 
-const viteConfig: UserConfig = {
+const viteConfig: UserConfig = { 
 	plugins: [vue()],
 	root: process.cwd(),
 	resolve: { alias },

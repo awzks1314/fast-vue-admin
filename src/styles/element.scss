@@ -166,12 +166,12 @@
 // 第三方字体图标大小
 .el-button i.iconfont,
 .el-button i.fa {
-	font-size: 14px !important;
+	font-size: 16px !important;
 	margin-right: 5px;
 }
 .el-button--medium i.iconfont,
 .el-button--medium i.fa {
-	font-size: 14px !important;
+	font-size: 16px !important;
 	margin-right: 5px;
 }
 .el-button--small i.iconfont,
@@ -852,7 +852,7 @@
 // 第三方图标字体间距/大小设置
 .el-menu-item .iconfont,
 .el-submenu .iconfont,.el-menu-item .fa,.el-submenu .fa {
-	font-size: 14px !important;
+	font-size: 16px !important;
 	display: inline-block;
 	vertical-align: middle;
 	margin-right: 5px;
@@ -861,7 +861,7 @@
 }
 // element plus 本身字体图标
 .el-submenu [class^='el-icon-'] {
-	font-size: 14px !important;
+	font-size: 16px !important;
 }
 // 去掉离开浏览器时，菜单的默认高亮
 .el-menu-item:focus {

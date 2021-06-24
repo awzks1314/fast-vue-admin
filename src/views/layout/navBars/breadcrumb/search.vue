@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { reactive, ref, toRefs, nextTick, defineComponent } from 'vue'
-import { useStore } from '@/store/index'
+import { useStore } from '/@/store/index'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({

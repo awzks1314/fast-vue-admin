@@ -1,5 +1,5 @@
 <template>
-	<div class="layout-footer mt15" v-show="isDelayFooter">
+	<div class="layout-footer" v-show="isDelayFooter">
 		<div class="layout-footer-warp">
 			<div>freeVue，一个后台管理系统模板 {{'<(*￣▽￣*)/'}}</div>
 			<div class="mt5">{{ $t('message.copyright.one5') }}</div>
@@ -34,6 +34,8 @@ export default {
 .layout-footer {
 	width: 100%;
 	display: flex;
+  align-items: center;
+  min-height: 60px;
 	&-warp {
 		margin: auto;
 		color: #9e9e9e;

@@ -62,11 +62,11 @@ import { useRouter } from 'vue-router';
 import { ElMessageBox, ElMessage } from 'element-plus';
 import screenfull from 'screenfull';
 import { useI18n } from 'vue-i18n';
-import { resetRoute } from '@/router/index';
-import { useStore } from '@/store/index';
-import { Local, Session } from '@/utils/storage';
-import UserNews from '@/views/layout/navBars/breadcrumb/userNews.vue';
-import Search from '@/views/layout/navBars/breadcrumb/search.vue';
+import { resetRoute } from '/@/router/index';
+import { useStore } from '/@/store/index';
+import { Local, Session } from '/@/utils/storage';
+import UserNews from '/@/views/layout/navBars/breadcrumb/userNews.vue';
+import Search from '/@/views/layout/navBars/breadcrumb/search.vue';
 export default {
 	name: 'layoutBreadcrumbUser',
 	components: { UserNews, Search },
@@ -214,8 +214,8 @@ export default {
 		padding: 0 10px;
 		cursor: pointer;
 		color: var(--bg-topBarColor);
-		height: 50px;
-		line-height: 50px;
+		height: 60px;
+		line-height: 60px;
 		display: flex;
 		align-items: center;
 		&:hover {

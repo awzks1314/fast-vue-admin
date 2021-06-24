@@ -1,9 +1,9 @@
-import { store } from '@/store/index';
-import { Session } from '@/utils/storage';
-import { NextLoading } from '@/utils/loading';
-import { setAddRoute, setFilterMenuAndCacheTagsViewRoutes } from '@/router/index';
-import { dynamicRoutes } from '@/router/route';
-import { getMenuAdmin, getMenuTest } from '@/api/menu/index';
+import { store } from '/@/store/index';
+import { Session } from '/@/utils/storage';
+import { NextLoading } from '/@/utils/loading';
+import { setAddRoute, setFilterMenuAndCacheTagsViewRoutes } from '/@/router/index';
+import { dynamicRoutes } from '/@/router/route';
+import { getMenuAdmin, getMenuTest } from '/@/api/menu/index';
 
 /**
  * 获取目录下的 .vue、.tsx 全部文件

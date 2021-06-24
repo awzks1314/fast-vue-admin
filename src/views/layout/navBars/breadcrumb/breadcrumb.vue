@@ -20,15 +20,15 @@
                         ></i>{{ $t(v.meta.title) }}
                     </a>  
                 </el-breadcrumb-item>
-            </transition-group> 
+            </transition-group>  
         </el-breadcrumb>
-    </div>
+    </div> 
 </template>
 
 <script lang="ts">
 import { computed, getCurrentInstance, onMounted, reactive, toRefs } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { useStore } from '@/store/index'
+import { useStore } from '/@/store/index'
 export default {
   name: 'LayoutBreadcrumb',
   setup() {
@@ -70,12 +70,14 @@ export default {
                     if(item.children) getBreadcrumbList(item.children)
                 }
             })
-        })
-    }
+        }) 
+        console.log(state.breadcrumbList)
+    } 
     const initRouteSplit = (path:string) => {
         // /home
         if(!store.state.themeConfig.themeConfig.isBreadcrumb) return false;
-        state.breadcrumbList = [store.state.routesList.routesList[0]]
+        // state.breadcrumbList = [store.state.routesList.routesList[0]]
+        state.breadcrumbList = []
         state.routeSplit = path.split('/')
         state.routeSplit.shift()
         state.routeSplitFirst = `/${state.routeSplit[0]}`

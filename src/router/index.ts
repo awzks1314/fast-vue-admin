@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { store } from '@/store/index';
-import { Session } from '@/utils/storage';
-import { NextLoading } from '@/utils/loading';
-import { staticRoutes, dynamicRoutes } from '@/router/route';
-import { initFrontEndControlRoutes } from '@/router/frontEnd';
-import { initBackEndControlRoutes } from '@/router/backEnd';
+import { store } from '/@/store/index';
+import { Session } from '/@/utils/storage';
+import { NextLoading } from '/@/utils/loading';
+import { staticRoutes, dynamicRoutes } from '/@/router/route';
+import { initFrontEndControlRoutes } from '/@/router/frontEnd';
+import { initBackEndControlRoutes } from '/@/router/backEnd';
 
 /**
  * 创建一个可以被 Vue 应用程序使用的路由实例

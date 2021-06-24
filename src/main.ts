@@ -3,11 +3,11 @@ import App from './App.vue';
 import router from './router';
 import { store, key } from './store';
 // import { authDirective } from '/@/utils/authDirective';
-import { i18n } from '@/i18n/index';
+import { i18n } from '/@/i18n/index';
  
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
-import '@/styles/index.scss'
+import '/@/styles/index.scss'
 import mitt from 'mitt';
 // 截屏 
 // import screenShort from 'vue-web-screen-shot';

@@ -1,8 +1,8 @@
 <template>
     <div class="layout-navbars-breadcrumb-index">
         <Logo v-if="setIsShowLogo"/> 
-        <!-- 头部左侧面包屑 首页/订单/列表 -->
-        <Breadcrumb/>
+        <!-- 头部左侧面包屑 首页/订单/列表 经典和横向模式不展示面包屑-->
+        <Breadcrumb v-if="isShowBreadcrumb"/>
         <!-- 设置是否显示横向导航菜单 layout == 'transverse' -->
         <Horizontal :menuList="menuList" v-if="isLayoutTransverse"/>
         <User />
@@ -13,11 +13,11 @@
 import { computed, onMounted, onUnmounted, toRefs, watch } from 'vue'
 import { getCurrentInstance, reactive } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from '@/store/index'
-import Logo from '@/views/layout/logo/index.vue'
-import User from '@/views/layout/navBars/breadcrumb/user.vue';
-import Breadcrumb from '@/views/layout/navBars/breadcrumb/breadcrumb.vue'
-import Horizontal from '@/views/layout/navMenu/horizontal.vue'
+import { useStore } from '/@/store/index'
+import Logo from '/@/views/layout/logo/index.vue'
+import User from '/@/views/layout/navBars/breadcrumb/user.vue';
+import Breadcrumb from '/@/views/layout/navBars/breadcrumb/breadcrumb.vue'
+import Horizontal from '/@/views/layout/navMenu/horizontal.vue'
 export default {
   name: 'LayoutBreadcrumbIndex',
   components: { Logo, Breadcrumb, Horizontal, User },
@@ -40,10 +40,17 @@ export default {
         return (isShowLogo && layout === 'classic') || (isShowLogo && layout === 'transverse');
     })
 
+    // 判断面包屑显示情况
+    const isShowBreadcrumb = computed(() => {
+        let { layout, isClassicSplitMenu } = store.state.themeConfig.themeConfig;
+        if (layout === 'transverse') return false
+        else if (layout === 'classic' && isClassicSplitMenu) return false
+        else return true
+    }) 
     // 设置是否显示横向导航菜单
     const isLayoutTransverse = computed(() => {
         let { layout,isClassicSplitMenu } = store.state.themeConfig.themeConfig;
-        return layout === 'transerve' || (isClassicSplitMenu && layout === 'classic')
+        return layout === 'transverse' || (isClassicSplitMenu && layout === 'classic')
     }) 
 
     // 设置/过滤路由(非晶态路由/是否显示在菜单中)
@@ -109,6 +116,7 @@ export default {
     return {
         getThemeConfig,
         setIsShowLogo,
+        isShowBreadcrumb,
         isLayoutTransverse,
         ...toRefs(state)
     }
@@ -118,7 +126,7 @@ export default {
 
 <style scoped lang="scss">
 .layout-navbars-breadcrumb-index {
-	height: 50px;
+	height: 60px;
 	display: flex;
 	align-items: center;
 	padding-right: 15px;
