@@ -1,0 +1,17 @@
+var M=Object.defineProperty;var k=Object.getOwnPropertySymbols;var x=Object.prototype.hasOwnProperty,R=Object.prototype.propertyIsEnumerable;var y=(t,n,l)=>n in t?M(t,n,{enumerable:!0,configurable:!0,writable:!0,value:l}):t[n]=l,_=(t,n)=>{for(var l in n||(n={}))x.call(n,l)&&y(t,l,n[l]);if(k)for(var l of k(n))R.call(n,l)&&y(t,l,n[l]);return t};import{x as j,D as A,a as B,z as D,o as E,Y as F,t as W,n as q,g as v,p as N,d as O,e as c,f as u,h as d,i as s,F as C,W as P,l as $,Z as T,k as H,j as V,q as Y}from"./vendor.445db117.js";import{u as U}from"./index.70b52c15.js";import Z from"./subItem.bde88858.js";var w=j({name:"navMenuHorizontal",components:{SubItem:Z},props:{menuList:{type:Array,default:()=>[]}},setup(t){const{proxy:n}=v(),l=A(),S=U(),m=B({defaultActive:null}),L=D(()=>t.menuList),z=o=>{const r=o.wheelDelta||-o.deltaY*40;n.$refs.elMenuHorizontalScrollRef.$refs.wrap.scrollLeft=n.$refs.elMenuHorizontalScrollRef.$refs.wrap.scrollLeft+r/4},b=()=>{q(()=>{let o=document.querySelector(".el-menu.el-menu--horizontal li.is-active");if(!o)return!1;n.$refs.elMenuHorizontalScrollRef.$refs.wrap.scrollLeft=o.offsetLeft})},p=o=>{const r=o.split("/");S.state.themeConfig.themeConfig.layout==="classic"?m.defaultActive=`/${r[1]}`:m.defaultActive=o},f=o=>o.filter(r=>!r.meta.isHide).map(r=>(r=Object.assign({},r),r.children&&(r.children=f(r.children)),r)),g=o=>{const r=o.split("/");let h={};return f(S.state.routesList.routesList).map((i,I)=>{i.path===`/${r[1]}`&&(i.k=I,h.item=[_({},i)],h.children=[_({},i)],i.children&&(h.children=i.children))}),h},e=o=>{n.mittBus.emit("setSendClassicChildren",g(o))};return E(()=>{b(),p(l.path)}),F(o=>{p(o.path),n.mittBus.emit("onMenuClick")}),_({menuLists:L,onElMenuHorizontalScroll:z,onHorizontalSelect:e},W(m))}}),te=`.el-menu-horizontal-warp[data-v-e5dc84ee] {
+  flex: 1;
+  overflow: hidden;
+  margin-right: 30px;
+}
+.el-menu-horizontal-warp[data-v-e5dc84ee] .el-scrollbar__bar.is-vertical {
+  display: none;
+}
+.el-menu-horizontal-warp[data-v-e5dc84ee] a {
+  width: 100%;
+}
+.el-menu-horizontal-warp .el-menu.el-menu--horizontal[data-v-e5dc84ee] {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}`;const a=Y();N("data-v-e5dc84ee");const G={class:"el-menu-horizontal-warp"};O();const J=a((t,n,l,S,m,L)=>{const z=c("SubItem"),b=c("el-submenu"),p=c("el-menu-item"),f=c("el-menu"),g=c("el-scrollbar");return u(),d("div",G,[s(g,{onWheel:V(t.onElMenuHorizontalScroll,["prevent"]),ref:"elMenuHorizontalScrollRef"},{default:a(()=>[s(f,{router:"","default-active":t.defaultActive,"background-color":"transparent",mode:"horizontal",onSelect:t.onHorizontalSelect},{default:a(()=>[(u(!0),d(C,null,P(t.menuLists,e=>(u(),d(C,null,[e.children&&e.children.length>0?(u(),d(b,{index:e.path,key:e.path},{title:a(()=>[s("i",{class:e.meta.icon?e.meta.icon:""},null,2),s("span",null,$(t.$t(e.meta.title)),1)]),default:a(()=>[s(z,{chil:e.children},null,8,["chil"])]),_:2},1032,["index"])):(u(),d(p,{index:e.path,key:e.path},T({_:2},[!e.meta.isLink||e.meta.isLink&&e.meta.isIframe?{name:"title",fn:a(()=>[s("i",{class:e.meta.icon?e.meta.icon:""},null,2),H(" "+$(t.$t(e.meta.title)),1)])}:{name:"title",fn:a(()=>[s("a",{href:e.meta.isLink,target:"_blank"},[s("i",{class:e.meta.icon?e.meta.icon:""},null,2),H(" "+$(t.$t(e.meta.title)),1)],8,["href"])])}]),1032,["index"]))],64))),256))]),_:1},8,["default-active","onSelect"])]),_:1},8,["onWheel"])])});w.render=J,w.__scopeId="data-v-e5dc84ee";export default w;
