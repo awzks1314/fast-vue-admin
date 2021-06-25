@@ -12,20 +12,19 @@ import { Local } from '/@/utils/storage'
 export default {
   name: 'Layout', 
   components: {
-    Defaults: defineAsyncComponent(() => import('/@/views/layout/main/defaults.vue')),
-    Classic: defineAsyncComponent(() => import('/@/views/layout/main/classic.vue')),
-    Transverse: defineAsyncComponent(() => import('/@/views/layout/main/transverse.vue')),
-    Subfield: defineAsyncComponent(() => import('/@/views/layout/main/subfield.vue'))
+    Defaults: defineAsyncComponent(() => import('/@/layout/main/defaults.vue')),
+    Classic: defineAsyncComponent(() => import('/@/layout/main/classic.vue')),
+    Transverse: defineAsyncComponent(() => import('/@/layout/main/transverse.vue')),
+    Subfield: defineAsyncComponent(() => import('/@/layout/main/subfield.vue'))
   },
-  setup() { 
+  setup() {  
     const { proxy } = getCurrentInstance() as any;
     const store = useStore()
     // 获取布局配置信息
     const getThemeConfig = computed(() => {
       return store.state.themeConfig.themeConfig
     })
-    console.log(getThemeConfig.value.layout)
-    // 窗口大小改变时(适配移动端)
+    // 窗口大小改变时(适配移动端) 
     const onLayoutResize = () => {
       const clientWidth = document.body.clientWidth
       if (clientWidth < 1000) {
@@ -36,7 +35,7 @@ export default {
         })
       } else {
         proxy.mittBus.emit('layoutMobileResize', {
-          layout: Local.get('oldLayout') ? Local.get('oldLayout') : 'defaults',
+          layout: Local.get('oldLayout') ? Local.get('oldLayout') : getThemeConfig.value.layout,
           clientWidth
         })
       }

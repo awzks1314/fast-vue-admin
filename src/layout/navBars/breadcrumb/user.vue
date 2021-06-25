@@ -65,8 +65,8 @@ import { useI18n } from 'vue-i18n';
 import { resetRoute } from '/@/router/index';
 import { useStore } from '/@/store/index';
 import { Local, Session } from '/@/utils/storage';
-import UserNews from '/@/views/layout/navBars/breadcrumb/userNews.vue';
-import Search from '/@/views/layout/navBars/breadcrumb/search.vue';
+import UserNews from '/@/layout/navBars/breadcrumb/userNews.vue';
+import Search from '/@/layout/navBars/breadcrumb/search.vue';
 export default {
 	name: 'layoutBreadcrumbUser',
 	components: { UserNews, Search },

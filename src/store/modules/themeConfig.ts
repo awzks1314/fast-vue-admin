@@ -1,3 +1,4 @@
+import { vue } from '@vitejs/plugin-vue';
 import { Module } from 'vuex';
 // 此处加上 `.ts` 后缀报错，具体原因不详
 import { ThemeConfigState, RootStateTypes } from '/@/store/interface/index';
@@ -33,7 +34,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			 * 中的 `initSetLayoutChange(设置布局切换，重置主题样式)` 方法
 			 */
 			// 默认顶栏导航背景颜色，请注意：需要同时修改 `/@/theme/common/var.scss` 对应的值
-			topBar: '#ffffff',
+			topBar: '#ffffff', 
 			// 默认菜单导航背景颜色，请注意：需要同时修改 `/@/theme/common/var.scss` 对应的值
 			menuBar: '#545c64',
 			// 默认分栏菜单背景颜色，请注意：需要同时修改 `/@/theme/common/var.scss` 对应的值
@@ -132,9 +133,9 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			// 网站logo
 			globalLogo: 'https://z3.ax1x.com/2021/06/24/RMhoCR.png',
 			// 网站主标题（菜单导航、浏览器当前网页标题）
-			globalTitle: 'freeVue后台模板',
+			globalTitle: 'fast-vue-admin',
 			// 网站副标题（登录页顶部文字）
-			globalViceTitle: 'freeVue后台管理系统模板',
+			globalViceTitle: 'fast-vue-admin后台管理',
 			// 默认初始语言，可选值"<zh-cn|en|zh-tw>"，默认 zh-cn
 			globalI18n: 'zh-cn',
 			// 默认全局组件大小，可选值"<|medium|small|mini>"，默认 ''

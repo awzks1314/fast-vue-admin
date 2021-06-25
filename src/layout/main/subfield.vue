@@ -18,10 +18,10 @@
 <script lang='ts'>
 import { computed } from 'vue'
 import { useStore } from '/@/store/index'
-import Aside from '/@/views/layout/component/aside.vue'
-import Header from '/@/views/layout/component/header.vue'
-import Main from '/@/views/layout/component/main.vue'
-import ColumnsAside from '/@/views/layout/component/columnsAside.vue'
+import Aside from '/@/layout/component/aside.vue'
+import Header from '/@/layout/component/header.vue'
+import Main from '/@/layout/component/main.vue'
+import ColumnsAside from '/@/layout/component/columnsAside.vue'
 export default {
   name: 'LayoutColumns',
   components: { Aside, Header, Main, ColumnsAside },

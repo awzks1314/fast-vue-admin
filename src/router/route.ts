@@ -18,7 +18,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
 		name: '/',
-		component: () => import('/@/views/layout/index.vue'),
+		component: () => import('/@/layout/index.vue'),
 		redirect: '/home',
 		meta: {  
 			isKeepAlive: true,
@@ -57,7 +57,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 			{
 				path: '/function',
 				name: 'function',
-				component: () => import('/@/views/layout/routerView/parent.vue'),
+				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/function/icon',
 				meta: {
 					title: 'message.router.funIndex',
@@ -73,7 +73,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					{
 						path: '/function/icon',
 						name: 'functionIcon',
-						component: () => import('/@/views/layout/routerView/parent.vue'),
+						component: () => import('/@/layout/routerView/parent.vue'),
 						redirect: '/function/icon/element',
 						meta: {
 							title: 'message.router.funIcon',
@@ -132,6 +132,36 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 								},
 							}
 						]
+					},
+					{
+						path: '/function/countup',
+						name: 'functionCountup',
+						component: () => import('/@/views/function/countup/index.vue'),
+						meta: {
+							title: 'message.router.funCountup', 
+							isLink: '',
+							isHide: false, 
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							auth: ['admin', 'test'],
+							icon: 'el-icon-odometer',
+						},
+					},
+					{
+						path: '/function/printPage',
+						name: 'functionPrintPage',
+						component: () => import('/@/views/function/printPage/index.vue'),
+						meta: {
+							title: 'message.router.funPrintJs', 
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							auth: ['admin', 'test'],
+							icon: 'el-icon-printer',
+						},
 					}
 				]
 			}

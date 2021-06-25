@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts">
-import Header from '/@/views/layout/component/header.vue'
-import Main from '/@/views/layout/component/main.vue'
+import Header from '/@/layout/component/header.vue'
+import Main from '/@/layout/component/main.vue'
 export default {
   name: 'LayoutTransverse',
   components: { Header, Main }

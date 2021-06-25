@@ -18,7 +18,7 @@ const viteConfig: UserConfig = {
 	plugins: [vue()],
 	root: process.cwd(),
 	resolve: { alias },
-	base: process.env.NODE_ENV === 'production' ? '/freeVue' : './',
+	base: process.env.NODE_ENV === 'production' ? '/fast-vue-admin' : './',
 	optimizeDeps: {
 		include: ['element-plus/lib/locale/lang/zh-cn', 'element-plus/lib/locale/lang/en', 'element-plus/lib/locale/lang/zh-tw'],
 	},

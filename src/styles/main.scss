@@ -117,14 +117,29 @@ body,
 		z-index: 9999999 !important;
 	}
 }
-
+/* 字体样式 */
+.text-bold {
+	font-weight: 800;
+}
 /* flex 弹性布局
 ------------------------------- */
 .flex {
 	display: flex;
 }
-.flex-auto {
+.flex-sub {
 	flex: 1;
+}
+.align-center {
+	align-items: center;
+}
+.justify-between {
+	justify-content: space-between;
+}
+.justify-center{
+	justify-content: center;
+}
+.flex-direction{
+	flex-direction: column
 }
 .flex-center {
 	@extend .flex;

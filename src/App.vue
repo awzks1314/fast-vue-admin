@@ -12,8 +12,8 @@ import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { Local } from '/@/utils/storage'
-import LockScreen from '/@/views/layout/lockScreen/index.vue'
-import Setings from '/@/views/layout/navBars/breadcrumb/setings.vue'
+import LockScreen from '/@/layout/lockScreen/index.vue'
+import Setings from '/@/layout/navBars/breadcrumb/setings.vue'
 export default defineComponent({
   name: 'App',
   components: { LockScreen,Setings },

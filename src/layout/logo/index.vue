@@ -26,7 +26,6 @@ export default {
 		// 设置 logo 的显示。classic 经典布局默认显示 logo
 		const setShowLogo = computed(() => { 
 			let { isCollapse, layout } = store.state.themeConfig.themeConfig;
-			console.log(layout)
 			return !isCollapse  ||layout === 'classic' || layout === 'transverse' || document.body.clientWidth < 1000;
 		});
 		// logo 点击实现菜单展开/收起

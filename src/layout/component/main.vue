@@ -8,6 +8,7 @@
       >
         <LayoutParentView />
       </el-scrollbar>
+      <Right />
       <Footer v-if="getThemeConfig.isFooter" />
         <Link :style="{ height: `calc(100vh - ${headerHeight}` }" :meta="currentRouteMeta" v-if="currentRouteMeta.isLink && !currentRouteMeta.isIframe" />
         <Iframes
@@ -23,13 +24,14 @@
 import { computed, defineComponent, watch, toRefs, getCurrentInstance, reactive, onBeforeMount } from 'vue'
 import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
-import Footer from '/@/views/layout/footer/index.vue'
-import LayoutParentView from '/@/views/layout/routerView/parent.vue';
-import Link from '/@/views/layout/routerView/link.vue';
-import Iframes from '/@/views/layout/routerView/iframes.vue';
+import LayoutParentView from '/@/layout/routerView/parent.vue';
+import Link from '/@/layout/routerView/link.vue';
+import Iframes from '/@/layout/routerView/iframes.vue';
+import Footer from '/@/layout/component/footer.vue'
+import Right from '/@/layout/component/right.vue'
 export default defineComponent({
   name: 'LayoutMain',
-  components: { Footer, LayoutParentView, Link, Iframes },
+  components: { Footer, LayoutParentView, Link, Iframes,Right },
   setup() {
     const { proxy } = getCurrentInstance() as any
     const store = useStore()

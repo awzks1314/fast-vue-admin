@@ -1,12 +1,10 @@
 /**
 * scss 怎么动态创建变量
-* 本来想用 @function，@for 好像不可以动态创建
-* 2020.12.19 lyt 记录
 **/
 
 /* 定义初始颜色
 ------------------------------- */
-$--color-primary: #409eff !default;
+$--color-primary: #409EFF !default;
 $--color-whites: #ffffff !default;
 $--color-blacks: #000000 !default;
 $--color-primary-light-1: mix($--color-whites, $--color-primary, 10%) !default;
@@ -59,7 +57,7 @@ $--color-danger-light-7: mix($--color-whites, $--color-danger, 70%) !default;
 $--color-danger-light-8: mix($--color-whites, $--color-danger, 80%) !default;
 $--color-danger-light-9: mix($--color-whites, $--color-danger, 90%) !default;
 $--bg-topBar: #ffffff;
-$--bg-menuBar: #545c64;
+$--bg-menuBar: #fff;
 $--bg-columnsMenuBar: #545c64;
 $--bg-topBarColor: #606266;
 $--bg-menuBarColor: #eaeaea;

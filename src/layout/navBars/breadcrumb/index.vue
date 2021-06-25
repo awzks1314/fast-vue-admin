@@ -14,10 +14,10 @@ import { computed, onMounted, onUnmounted, toRefs, watch } from 'vue'
 import { getCurrentInstance, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from '/@/store/index'
-import Logo from '/@/views/layout/logo/index.vue'
-import User from '/@/views/layout/navBars/breadcrumb/user.vue';
-import Breadcrumb from '/@/views/layout/navBars/breadcrumb/breadcrumb.vue'
-import Horizontal from '/@/views/layout/navMenu/horizontal.vue'
+import Logo from '/@/layout/logo/index.vue'
+import User from '/@/layout/navBars/breadcrumb/user.vue';
+import Breadcrumb from '/@/layout/navBars/breadcrumb/breadcrumb.vue'
+import Horizontal from '/@/layout/navMenu/horizontal.vue'
 export default {
   name: 'LayoutBreadcrumbIndex',
   components: { Logo, Breadcrumb, Horizontal, User },

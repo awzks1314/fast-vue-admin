@@ -32,7 +32,7 @@
 import { toRefs, reactive, computed, defineComponent, getCurrentInstance, onMounted, nextTick } from 'vue';
 import { useRoute, onBeforeRouteUpdate } from 'vue-router';
 import { useStore } from '/@/store/index';
-import SubItem from '/@/views/layout/navMenu/subItem.vue';
+import SubItem from '/@/layout/navMenu/subItem.vue';
 export default defineComponent({
 	name: 'navMenuHorizontal',
 	components: { SubItem },

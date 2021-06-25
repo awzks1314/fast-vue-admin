@@ -46,7 +46,7 @@ import screenfull from 'screenfull';
 import { useStore } from '/@/store/index';
 import { Session } from '/@/utils/storage';
 import Sortable from 'sortablejs';
-import Contextmenu from '/@/views/layout/navBars/tagsView/contextmenu.vue';
+import Contextmenu from '/@/layout/navBars/tagsView/contextmenu.vue';
 export default {
 	name: 'layoutTagsView',
 	components: { Contextmenu },
