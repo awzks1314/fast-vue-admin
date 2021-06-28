@@ -8,7 +8,7 @@
       >
         <LayoutParentView />
       </el-scrollbar>
-      <Right />
+      <!-- <Right /> -->
       <Footer v-if="getThemeConfig.isFooter" />
         <Link :style="{ height: `calc(100vh - ${headerHeight}` }" :meta="currentRouteMeta" v-if="currentRouteMeta.isLink && !currentRouteMeta.isIframe" />
         <Iframes
@@ -24,14 +24,14 @@
 import { computed, defineComponent, watch, toRefs, getCurrentInstance, reactive, onBeforeMount } from 'vue'
 import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
-import LayoutParentView from '/@/layout/routerView/parent.vue';
-import Link from '/@/layout/routerView/link.vue';
-import Iframes from '/@/layout/routerView/iframes.vue';
+import LayoutParentView from '/@/layout/routerView/parent.vue'
+import Link from '/@/layout/routerView/link.vue'
+import Iframes from '/@/layout/routerView/iframes.vue'
 import Footer from '/@/layout/component/footer.vue'
 import Right from '/@/layout/component/right.vue'
 export default defineComponent({
   name: 'LayoutMain',
-  components: { Footer, LayoutParentView, Link, Iframes,Right },
+  components: { Footer, LayoutParentView, Link, Iframes, Right },
   setup() {
     const { proxy } = getCurrentInstance() as any
     const store = useStore()
@@ -40,7 +40,7 @@ export default defineComponent({
       headerHeight: '',
       currentRouteMeta: {},
       isShowLink: false
-    }) 
+    })
     // 获取布局配置信息
     const getThemeConfig = computed(() => {
       return store.state.themeConfig.themeConfig
@@ -56,7 +56,7 @@ export default defineComponent({
       setTimeout(() => {
         state.isShowLink = true
       }, 100)
-    } 
+    }
     // 设置main的高度
     const initHeaderHeight = () => {
       const { isTagsview, isFooter } = store.state.themeConfig.themeConfig
@@ -66,16 +66,16 @@ export default defineComponent({
       else return (state.headerHeight = `60px`)
     }
     // 页面加载前
-    onBeforeMount(() => {
-      initCurrentRouteMeta(route.meta)
+    onBeforeMount(() => { 
+      initCurrentRouteMeta(route.meta) 
       initHeaderHeight()
     })
     // 监听 themeConfig的变化
     watch(store.state.themeConfig.themeConfig, (val) => {
-      state.headerHeight = val.isTagsview && val.isFooter ? '160px' : val.isTagsview && !val.isFooter ? '100px' : 
-      !val.isTagsview && val.isFooter ? '120px' :'60px'
+      state.headerHeight = val.isTagsview && val.isFooter ? '160px' : val.isTagsview && !val.isFooter ? '100px'
+        : !val.isTagsview && val.isFooter ? '120px' : '60px'
       if (val.isFixedHeaderChange !== val.isFixedHeader) {
-        if (!proxy.$ref.layoutScrollbarRef) return false
+        if ( proxy.$ref && !proxy.$ref.layoutScrollbarRef) return false
         proxy.$refs.layoutScrollbarRef.update()
       }
     })

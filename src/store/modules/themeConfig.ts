@@ -63,7 +63,7 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			// 是否开启菜单手风琴效果
 			isUniqueOpened: false,
 			// 是否开启固定 Header
-			isFixedHeader: false,
+			isFixedHeader: true,
 			// 初始化变量，用于更新菜单 el-scrollbar 的高度，请勿删除
 			isFixedHeaderChange: false,
 			// 是否开启经典布局分割菜单（仅经典布局生效）

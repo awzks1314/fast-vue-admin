@@ -40,11 +40,12 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 				}
 			}, 
 			{ 
-				path: '/order',
-				name: 'order',
-				component: () => import('/@/views/order/index.vue'),
+				path: '/system',
+				name: 'system',
+				component: () => import('/@/layout/routerView/parent.vue'),
+				redirect: '/system/user',
 				meta: {
-					title: 'message.router.systemMenu',
+					title: 'message.router.system',
 					isLink: '',
 					isHide: false,
 					isKeepAlive: true,
@@ -52,8 +53,40 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isIframe: false, 
 					auth: ['admin', 'test'],
 					icon: 'iconfont icon-shouye', 
-				}
-			},
+				},
+				children: [
+					{
+						path: '/system/menu',
+						name: 'systemMenu',
+						component: () => import('../views/system/menu.vue'),
+						meta: {
+							title: 'message.router.systemMenu',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							auth: ['admin', 'test'],
+							icon: 'el-icon-s-operation',
+						},
+					},
+					{
+						path: '/system/user',
+						name: 'systemUser',
+						component: () => import('/@/views/system/user.vue'),
+						meta: {
+							title: 'message.router.systemUser',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							auth: ['admin', 'test'],
+							icon: 'el-icon-user',
+						},
+					},
+				]
+			}, 
 			{
 				path: '/function',
 				name: 'function',
