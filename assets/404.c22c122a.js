@@ -1,4 +1,4 @@
-import{Y as d,p as f,d as l,e as m,f as c,h as p,i as e,l as n,k as _,q as h}from"./vendor.312c4d91.js";var o={name:"404",setup(){const t=d();return{onGoHome:()=>{t.push("/")}}}},F=`.error[data-v-553adf1f] {
+import{Y as d,p as f,d as l,e as m,f as c,h as p,i as e,l as n,k as _,q as h}from"./vendor.2e5e5880.js";var o={name:"404",setup(){const t=d();return{onGoHome:()=>{t.push("/")}}}},F=`.error[data-v-553adf1f] {
   height: 100%;
   background-color: white;
   display: flex;
