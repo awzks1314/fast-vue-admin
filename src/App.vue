@@ -3,6 +3,7 @@
   <!-- 屏保 -->
   <LockScreen v-if="getThemeConfig.isLockScreen" />
   <Setings ref="setingsRef" v-show="getThemeConfig.lockScreenTime !== 0" />
+  
 </template>
 
 <script lang="ts">

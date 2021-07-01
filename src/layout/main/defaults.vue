@@ -8,9 +8,9 @@
 				<Main />
 			</el-scrollbar>
 		</el-container>
-		<el-backtop target=".layout-backtop   .el-scrollbar__wrap"></el-backtop>
+		<el-backtop target="layout-container .layout-backtop  .el-scrollbar__wrap"></el-backtop>
 	</el-container>
-</template>
+</template> 
 
 <script lang="ts">
 import { computed, getCurrentInstance, watch } from 'vue'

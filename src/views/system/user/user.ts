@@ -1,11 +1,11 @@
 import { onMounted, reactive, toRefs } from 'vue'
-import TableMixin from '/@/mixins/tableMinxin'
 import { ElMessageBox } from 'element-plus'
+import { tableData } from '/@/mixins/tableMinxin'
 export default {
-  mixins:[TableMixin],
   name: 'SystemUser',
   setup() {
     const state: any = reactive({
+      elementLoadingText: '正在加载...',
       form: {
         name: '',
         sex: '',
@@ -13,16 +13,55 @@ export default {
         mobile: '',
         address: ''
       },
+      queryForm: {
+        pageSize: 10,
+        pageNo:1
+      },
+      tableData:tableData,
       offset: 0,
       openInquire: false,
       tableConfig: [
-        { prop: 'createDate', label: '下单时间', show: true, sortable: true },
-        { prop: 'sn', label: '订单号', show: true },
-        { prop: 'receiverName', label: '收货人', show: true },
-        { prop: 'receiverMobile', label: '联系电话', show: true },
-        { prop: 'receiverAddress', label: '收货地址', width: 180, show: true }
+        { prop: 'num', label: '编号', show: true },
+        { prop: 'name', label: '收货人', show: true },
+        { prop: 'photo', label: '联系电话', show: true, type:'image'},
+        { prop: 'phone', label: '联系电话', show: true },
+        { prop: 'sex', label: '联系电话', show: true },
+        { prop: 'email', label: '联系电话', show: true },
+        { prop: 'time', label: '收货地址', width: 180, show: true }
       ]
     })
+    // 页面加载前
+    onMounted(() => {
+      initTableData()
+      offset()
+    })
+    // 初始化表格数据
+		const initTableData = () => {
+			const data: Array<object> = [];
+			for (let i = 0; i < 20; i++) {
+				data.push({
+					num: `00${i + 1}`,
+					name: (Math.round(Math.random() * 20901) + 19968).toString(16),
+					photo: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1633081619,2004077072&fm=26&gp=0.jpg',
+					phone: Math.floor(Math.random() * 10000000000),
+					email: `${Math.floor(Math.random() * 1000)}@qq.com`,
+					sex: i % 2 === 0 ? '男' : '女',
+					time: new Date().toLocaleDateString(),
+				});
+			}
+			state.tableData.gridData.list = data;
+			state.tableData.gridData.total = data.length;
+		};
+    const handleSizeChange = (val: object) => {
+      console.log(val)
+      // 切换每页显示数
+      state.queryForm.pageNo = 1
+      state.queryForm.pageSize = val
+    }
+    const handlePageChange = (val: object) => {
+      // 切换页码事件
+      state.queryForm.pageNo = val
+    }
     // 偏移量
     const offset = () => {
       const len = Object.keys(state.form).length
@@ -35,11 +74,7 @@ export default {
       else if (state.openInquire && (len % 4) === 3) state.offset = 0
       else state.offset = 18
     }
-    // 页面加载前
-    onMounted(() => {
-        console.log(state.gridData)
-      offset()
-    })
+    
     // 查询
     const openMore = () => {
       state.openInquire = !state.openInquire
@@ -75,6 +110,8 @@ export default {
       openMore,
       reset,
       searchData,
+      handleSizeChange,
+      handlePageChange,
       ...toRefs(state)
     }
   }

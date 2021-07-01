@@ -220,6 +220,9 @@ body,
 
 /* 颜色值 
 ------------------------------- */
+.bg-white{
+	background: #fff;
+}
 .color-primary {
 	color: var(--color-primary);
 }
@@ -247,6 +250,9 @@ body,
 /* 外边距、内边距全局样式
 ------------------------------- */
 @for $i from 1 through 40 {
+	.m#{$i} {
+		margin: #{$i}px !important;
+	}
 	.mt#{$i} {
 		margin-top: #{$i}px !important;
 	}
