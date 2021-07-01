@@ -52,13 +52,13 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					isAffix: false,
 					isIframe: false, 
 					auth: ['admin', 'test'],
-					icon: 'iconfont icon-shouye', 
+					icon: 'el-icon-setting', 
 				},
 				children: [
 					{
 						path: '/system/menu',
 						name: 'systemMenu',
-						component: () => import('../views/system/menu.vue'),
+						component: () => import('../views/system/menu/menu.vue'),
 						meta: {
 							title: 'message.router.systemMenu',
 							isLink: '',
@@ -73,7 +73,7 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 					{
 						path: '/system/user',
 						name: 'systemUser',
-						component: () => import('/@/views/system/user.vue'),
+						component: () => import('/@/views/system/user/user.vue'),
 						meta: {
 							title: 'message.router.systemUser',
 							isLink: '',
