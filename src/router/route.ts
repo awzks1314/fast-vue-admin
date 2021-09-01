@@ -86,7 +86,88 @@ export const dynamicRoutes: Array<RouteRecordRaw> = [
 						},
 					},
 				]
-			}, 
+			},
+			{
+				path: '/menu',
+				name: 'menu',
+				component: () => import('/@/layout/routerView/parent.vue'),
+				redirect: '/menu/menu1',
+				meta: {
+					title: 'message.router.menu',
+					isLink: '',
+					isHide: false,
+					isKeepAlive: true,
+					isAffix: false,
+					isIframe: false,
+					auth: ['admin', 'test'],
+					icon: 'iconfont icon-caidan',
+				},
+				children: [
+					{
+						path: "/menu/menu1",
+						name: 'menuMenu1',
+						component: () => import('/@/layout/routerView/parent.vue'),
+						redirect: '/menu/menu1/menu11',
+						meta: {
+							title: 'message.router.menu1',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							auth: ['admin', 'test'],
+							icon: 'iconfont icon-caidan',
+						},
+						children: [
+							{
+								path: "/menu/menu1/menu11",
+								name: 'menuMenuMenu1',
+								component: () => import('/@/views/menu/menu1/menu11.vue'),
+								meta: {
+									title: 'message.router.menu11',
+									isLink: '',
+									isHide: false,
+									isKeepAlive: true,
+									isAffix: false,
+									isIframe: false,
+									auth: ['admin', 'test'],
+									icon: 'iconfont icon-caidan',
+								},
+							},
+							{
+								path: "/menu/menu1/menu12",
+								name: 'menuMenuMenu12',
+								component: () => import('/@/views/menu/menu1/menu12.vue'),
+								meta: {
+									title: 'message.router.menu12',
+									isLink: '',
+									isHide: false,
+									isKeepAlive: true,
+									isAffix: false,
+									isIframe: false,
+									auth: ['admin', 'test'],
+									icon: 'iconfont icon-caidan',
+								},
+							}
+						]
+					},
+					{
+						path: "/menu/menu2",
+						name: 'menuMenu2',
+						component: () => import('/@/views/menu/menu2/menu2.vue'),
+						meta: {
+							title: 'message.router.menu2',
+							isLink: '',
+							isHide: false,
+							isKeepAlive: true,
+							isAffix: false,
+							isIframe: false,
+							auth: ['admin', 'test'],
+							icon: 'iconfont icon-caidan',
+						}
+					}
+				]
+			},
 			{
 				path: '/function',
 				name: 'function',

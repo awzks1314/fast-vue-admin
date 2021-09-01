@@ -45,7 +45,7 @@ export default {
     }
     // 前往通知中心点击
     const onGoToGiteeClick = () => {
-      window.open('https://gitee.com/lyt-top/vue-next-admin')
+      window.open('https://git@github.com:awzks1314/freeVue.git')
     }
     return {
       onGoToGiteeClick,

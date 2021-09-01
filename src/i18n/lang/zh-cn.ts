@@ -21,6 +21,11 @@ export default {
 		funCountup: 'countup 数字滚动',
 		funPrintJs: '页面打印',
 		
+		menu: '多级菜单',
+		menu1: '菜单1',
+		menu2: '菜单2',
+		menu11: '菜单11',
+		menu12:'菜单12',
 		funTagsView: 'tagsView 操作',
 		funEchartsTree: 'echartsTree 树图',
 		funSelector: '图标选择器',

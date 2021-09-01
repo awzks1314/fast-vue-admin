@@ -71,7 +71,7 @@ export default {
                 }
             })
         }) 
-        console.log(state.breadcrumbList)
+        // console.log(state.breadcrumbList)
     } 
     const initRouteSplit = (path:string) => {
         // /home
